@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+const configSource = readFileSync(new URL('../lib/supabase/config.js', import.meta.url), 'utf8').replace('export function', 'function');
 const source = readFileSync(new URL('../lib/supabase/middleware.js', import.meta.url), 'utf8')
   .replace(/^import .*;\r?\n/gm, '').replace('export async function', 'async function');
 
@@ -10,6 +11,7 @@ function setup({ env = { NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co'
   class Response {
     constructor(body, options = {}) {
       Object.assign(this, options, { body });
+      this.headers = options.headers || new Map();
       this.jar = new Map();
       this.cookies = {
         set: (name, value, options) => {
@@ -33,7 +35,7 @@ function setup({ env = { NEXT_PUBLIC_SUPABASE_URL: 'https://example.supabase.co'
       } } };
     },
   });
-  vm.runInContext(source, context);
+  vm.runInContext(configSource + source, context);
   return {
     calls: () => calls,
     run: (path) => {
@@ -70,7 +72,7 @@ test('signed-out private routes preserve the destination', async () => {
 });
 test('public paths remain accessible, similar prefixes stay protected', async () => {
   assert.equal((await setup().run('/sign-in')).status, 200);
-  assert.equal((await setup().run('/reset/update')).status, 200);
+  assert.equal((await setup().run('/reset')).status, 200);
   assert.equal((await setup().run('/privacy-private')).status, 307);
 });
 test('authenticated users redirect from sign-in with refresh cookies', async () => {
@@ -87,4 +89,9 @@ test('root redirects and authenticated member access are retained', async () => 
 test('invalid authentication cannot authorize even if data contains a user', async () => {
   const r = await setup({ user: { id: 'member' }, error: { status: 401 } }).run('/today');
   assert.equal(new URL(r.location).pathname, '/sign-in');
+});
+
+test('password update requires a validated session', async () => {
+  assert.equal(new URL((await setup().run('/reset/update')).location).pathname, '/sign-in');
+  assert.equal((await setup({ user: { id: 'member' } }).run('/reset/update')).status, 200);
 });
