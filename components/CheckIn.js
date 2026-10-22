@@ -34,7 +34,12 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
 
   const flush = useCallback(async () => {
     if (!pendingFor(userId).length) return;
-    const { synced, failed } = await syncQueue(getBrowserSupabase(), userId);
+    let outcome;
+    try { outcome = await syncQueue(getBrowserSupabase(), userId); } catch {
+      setMessage('Could not access saved check-ins on this phone. Keep this page open and try again.');
+      return;
+    }
+    const { synced, failed } = outcome;
     refreshPending();
     if (failed.length) {
       setStatus('failed');
@@ -76,11 +81,21 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
     setMessage('');
     const result = await sendCheckin(getBrowserSupabase(), item);
     if (result === 'saved' || result === 'exists') {
-      setRecord({ ...item, created_at: new Date().toISOString() });
+      const { data: saved, error: readError } = await getBrowserSupabase().from('checkins').select('id, minutes, note, created_at').eq('day', day).single();
+      if (readError || !saved) {
+        setStatus('failed');
+        setMessage('Your check-in may have saved, but could not be confirmed. Reconnect and try again.');
+        return;
+      }
+      setRecord(saved);
       setStatus('done');
       startTransition(() => router.refresh());
     } else if (result === 'offline') {
-      enqueue(item);
+      try { enqueue(item); } catch {
+        setStatus('failed');
+        setMessage('This phone could not store your check-in. Reconnect and try again before closing this page.');
+        return;
+      }
       setRecord(item);
       setStatus('pending');
     } else {
@@ -94,19 +109,22 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
     const fd = new FormData(e.currentTarget);
     const minutes = fd.get('minutes') ? Number(fd.get('minutes')) : null;
     const note = String(fd.get('note') || '').trim().slice(0, 500);
-    if (minutes !== null && !(minutes >= 1 && minutes <= 600)) {
+    if (minutes !== null && (!Number.isInteger(minutes) || !(minutes >= 1 && minutes <= 600))) {
       setMessage('Minutes should be between 1 and 600.');
       return;
     }
     if (status === 'pending') {
-      updateQueued(record.id, { minutes, note });
+      try { updateQueued(record.id, { minutes, note }); } catch {
+        setMessage('This phone could not store your note. Reconnect and try again.');
+        return;
+      }
       setRecord({ ...record, minutes, note });
       setShowDetails(false);
       setMessage('Saved on this phone. It will sync with your check-in.');
       return;
     }
-    const { error } = await getBrowserSupabase().from('checkins').update({ minutes, note: note || null }).eq('id', record.id);
-    if (error) {
+    const { data: saved, error } = await getBrowserSupabase().from('checkins').update({ minutes, note: note || null }).eq('id', record.id).select('id').maybeSingle();
+    if (error || !saved) {
       setMessage('Couldn\'t save the note. Try again when you\'re online.');
       return;
     }

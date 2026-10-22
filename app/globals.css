@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+
+/*
+  TLV tokens. Palette from the committee's design spec (§7): Ink, Paper, Clay, Stone, Sage.
+  Clay and Sage do not reach 4.5:1 as text on Paper, so text uses their darker "-ink" steps;
+  the light values are kept for marks (the week stave, progress) where 3:1 is the bar.
+  8-point spacing; one face (Manrope); colour on data and the one primary action only.
+*/
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #20221f;
+  --color-paper: #f1eee7;
+  --color-surface: #fbfaf7;
+  --color-stone: #dcd8cb;
+  --color-rule: #e6e2d8;
+  --color-muted: #565a53;
+  --color-clay: #c65b37;
+  --color-clay-ink: #a3452a;
+  --color-clay-wash: #f4e3da;
+  --color-sage: #657264;
+  --color-sage-ink: #4f5a4e;
+  --color-sage-wash: #e3e7df;
+  --color-notice: #fbf3dc;
+  --color-notice-ink: #7a4b0c;
+  --color-danger: #a8261f;
+  --color-danger-wash: #f8e4e1;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.875rem;
+  --text-2xl--line-height: 2.25rem;
+
+  --radius-control: 6px;
+  --radius-panel: 10px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: "tnum" 0;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  ::selection {
+    background: var(--color-clay-wash);
+  }
+  input, textarea, select {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .num { font-variant-numeric: tabular-nums; }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] px-4 text-sm font-semibold transition-[background-color,transform] duration-100 select-none;
+  }
+  .btn:active:not(:disabled) { transform: scale(0.98); }
+  .btn:disabled { @apply cursor-not-allowed opacity-60; }
+  .btn-primary { @apply bg-ink text-paper hover:bg-[#383b36]; }
+  .btn-quiet { @apply bg-transparent text-ink underline-offset-4 hover:underline; }
+  .btn-outline { @apply border border-stone bg-surface text-ink hover:bg-paper; }
+  .btn-danger { @apply border border-danger/40 bg-surface text-danger hover:bg-danger-wash; }
+
+  .field { @apply grid gap-1.5; }
+  .label { @apply text-sm font-semibold text-ink; }
+  .hint { @apply text-xs text-muted; }
+  .input {
+    @apply min-h-11 w-full rounded-[var(--radius-control)] border border-[#b9b4a6] bg-surface px-3 text-base text-ink placeholder:text-muted;
+  }
+  .input:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 1px; }
+  .input[aria-invalid="true"] { @apply border-danger; }
+  textarea.input { @apply py-2.5 leading-6; }
+  .field-error { @apply text-sm text-danger; }
+
+  .panel { @apply rounded-[var(--radius-panel)] bg-surface; }
+  .notice { @apply rounded-[var(--radius-control)] bg-notice px-3 py-2 text-sm text-notice-ink; }
+  .chip { @apply inline-flex h-6 items-center rounded px-2 text-xs font-semibold; }
+
+  .prose-tlv p + p { margin-top: 0.75rem; }
+  .prose-tlv a { @apply text-clay-ink underline underline-offset-2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

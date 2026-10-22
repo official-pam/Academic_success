@@ -1,0 +1,14 @@
+import Link from 'next/link';
+import { requireStaff } from '@/lib/auth';
+import { AnnouncementForm } from '@/components/admin/SimpleForms';
+export const metadata = { title: 'New announcement' };
+export default async function NewAnnouncement() {
+  const { profile } = await requireStaff();
+  return (
+    <div className="grid gap-6">
+      <Link href="/admin/announcements" className="text-sm font-medium underline underline-offset-4">← Announcements</Link>
+      <h1 className="text-2xl font-bold tracking-tight">New announcement</h1>
+      <AnnouncementForm profile={profile} />
+    </div>
+  );
+}
