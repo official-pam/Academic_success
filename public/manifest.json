@@ -1,0 +1,23 @@
+{
+  "name": "TLV Academic — Season of Restored Glory",
+  "short_name": "TLV Academic",
+  "description": "Daily reading, assignments and support for TLV choir members.",
+  "id": "/today",
+  "start_url": "/today?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F1EEE7",
+  "theme_color": "#F1EEE7",
+  "lang": "en-NG",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "I read today", "url": "/today", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Prayer points", "url": "/support", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
