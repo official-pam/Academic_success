@@ -187,6 +187,38 @@ try {
   await bola.page.goto(`${BASE}/updates`); await hydrated(bola.page);
   ok((await bola.page.getByText('SEET study group Saturday').count()) === 0, 'SICT member does not see it');
 
+  // ---- Prayer: member points (shared) and prayer requests (private) ---------------------------------------
+  p = ama.page;
+  await p.goto(`${BASE}/support`); await hydrated(p);
+  await p.getByLabel('Share a prayer point').fill('For strength for everyone writing exams this week');
+  await p.getByRole('button', { name: 'Share' }).click();
+  await p.getByText('Shared with everyone.').waitFor();
+  await p.getByLabel('What should we pray about?').fill('Please pray for my EEE 311 exam on Friday.');
+  await p.getByRole('button', { name: 'Send prayer request' }).click();
+  await p.getByText(/^Sent\./).waitFor();
+  ok(await see(p.getByText('Waiting', { exact: true })), 'member sees their prayer request as waiting');
+  await shot(p, '09-support-prayer');
+  await bola.page.goto(`${BASE}/support`); await hydrated(bola.page);
+  ok(await see(bola.page.getByText('For strength for everyone writing exams this week')), 'another member (other school) sees the shared prayer point');
+  ok(await see(bola.page.getByText('Ama ·')), 'shared point shows the author\'s first name');
+  ok((await bola.page.getByText('Please pray for my EEE 311 exam on Friday.').count()) === 0, 'the private prayer request is not visible to other members');
+  ok((await bola.page.locator('text=From the committee').count()) === 1, 'committee points are labelled and come first');
+
+  p = kemi.page;
+  await p.goto(`${BASE}/admin/prayer-requests`); await hydrated(p);
+  ok(await see(p.getByText('Please pray for my EEE 311 exam on Friday.')), 'committee head sees the prayer request');
+  await p.getByRole('button', { name: 'Mark as prayed for' }).click();
+  await p.getByText('No waiting requests').waitFor();
+  ok(sql(`select count(*) from public.prayer_requests where prayed_at is not null`) === '1', 'request marked prayed for');
+  await shot(p, '10-prayer-requests');
+  await p.goto(`${BASE}/support`); await hydrated(p);
+  await p.locator('li', { hasText: 'For strength for everyone writing exams this week' }).getByRole('button', { name: 'Hide' }).click();
+  await p.getByText('Hidden from members').waitFor();
+  await bola.page.reload(); await hydrated(bola.page);
+  ok((await bola.page.getByText('For strength for everyone writing exams this week').count()) === 0, 'committee head can hide a member\'s prayer point');
+  await ama.page.reload(); await hydrated(ama.page);
+  ok(await see(ama.page.getByText(/Prayed for by Kemi/)), 'member sees who prayed for their request');
+
   // ---- Admin sees everyone ----------------------------------------------------------------------------------
   p = owner.page;
   await p.goto(`${BASE}/admin/students`); await hydrated(p);

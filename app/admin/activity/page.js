@@ -23,7 +23,7 @@ export default async function ActivityPage({ searchParams }) {
     <div className="grid max-w-3xl gap-6">
       <div>
         <h1 className="display text-[2.25rem] leading-[1.08]">Activity</h1>
-        <p className="mt-1 text-sm text-muted">Finished focus sessions and new results from the students you look after, newest first.</p>
+        <p className="mt-1 text-sm text-muted">Finished focus sessions, new results and prayer requests from the students you look after, newest first.</p>
       </div>
       {error ? (
         <p role="alert" className="notice">Couldn't load activity. Try again.</p>
@@ -37,7 +37,7 @@ export default async function ActivityPage({ searchParams }) {
             const isNew = !cursor && (!seenBefore || new Date(it.at) > seenBefore);
             return (
               <li key={`${it.kind}-${it.at}-${i}`} className={`flex gap-4 px-4 py-3 ${isNew ? 'bg-lavender-wash/60' : ''}`}>
-                <span className={`icon-tile ${it.kind === 'result' ? 'bg-sage-wash text-sage-ink' : 'bg-lavender-wash text-lavender-ink'}`} aria-hidden="true">
+                <span className={`icon-tile ${it.kind === 'result' ? 'bg-sage-wash text-sage-ink' : it.kind === 'prayer' ? 'bg-rose-wash text-rose-ink' : 'bg-lavender-wash text-lavender-ink'}`} aria-hidden="true">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
                     {it.kind === 'result'
                       ? <path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM9.5 14l2 2 3.5-4" strokeLinecap="round" strokeLinejoin="round" />
@@ -47,7 +47,7 @@ export default async function ActivityPage({ searchParams }) {
                 <div className="min-w-0 flex-1 text-sm">
                   <p>
                     <Link href={`/admin/students/${it.member_id}`} className="font-semibold underline-offset-4 hover:underline">{it.member_name}</Link>{' '}
-                    {it.kind === 'result' ? 'recorded a result for' : 'finished a focus session on'} <strong>{it.title}</strong>
+                    {it.kind === 'result' ? 'recorded a result for' : it.kind === 'prayer' ? 'sent' : 'finished a focus session on'} {it.kind === 'prayer' ? <Link href="/admin/prayer-requests" className="font-semibold underline-offset-4 hover:underline">a prayer request</Link> : <strong>{it.title}</strong>}
                   </p>
                   <p className="text-muted">
                     {it.detail} · {[it.school_code, levelLabel(it.level)].filter(Boolean).join(' · ')} · {formatDateTime(it.at)}

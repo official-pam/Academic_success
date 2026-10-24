@@ -8,7 +8,12 @@ export const metadata = { title: { default: 'Committee', template: '%s · Commit
 
 export default async function AdminLayout({ children }) {
   const { supabase, profile } = await requireStaff();
-  const unread = Number((await supabase.rpc('mentor_feed_unread')).data || 0);
+  const [feed, waiting] = await Promise.all([
+    supabase.rpc('mentor_feed_unread'),
+    supabase.from('prayer_requests').select('id', { count: 'exact', head: true }).is('prayed_at', null).neq('user_id', profile.id),
+  ]);
+  const unread = Number(feed.data || 0);
+  const waitingPrayers = waiting.count || 0;
   const chairman = profile.role === 'chairman';
   const scope = roleLine(profile);
   return (
@@ -18,7 +23,7 @@ export default async function AdminLayout({ children }) {
           <Link href="/admin" className="rounded"><Wordmark /></Link>
           <p className="text-xs text-muted md:mt-3">{scope}</p>
         </div>
-        <div className="mt-3 md:mt-6"><AdminNav chairman={chairman} unread={unread} /></div>
+        <div className="mt-3 md:mt-6"><AdminNav chairman={chairman} unread={unread} waitingPrayers={waitingPrayers} /></div>
         <div className="hidden md:mt-auto md:block md:px-2">
           <Link href="/today" className="text-sm font-medium underline underline-offset-4">← Back to my app</Link>
         </div>

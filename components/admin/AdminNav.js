@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export function AdminNav({ chairman, unread = 0 }) {
+export function AdminNav({ chairman, unread = 0, waitingPrayers = 0 }) {
   const pathname = usePathname();
   const items = [
     { href: '/admin/students', label: 'Students' },
@@ -10,6 +10,7 @@ export function AdminNav({ chairman, unread = 0 }) {
     { href: '/admin', label: 'Participation', exact: true },
     { href: '/admin/assignments', label: 'Assignments' },
     { href: '/admin/announcements', label: 'Announcements' },
+    { href: '/admin/prayer-requests', label: 'Prayer requests', count: waitingPrayers },
     { href: '/admin/prayer-points', label: 'Prayer points' },
     ...(chairman ? [{ href: '/admin/people', label: 'People and roles' }] : []),
   ];

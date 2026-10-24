@@ -5,6 +5,8 @@ const ROWS = [
   ['Your courses, targets, goals and results (grades, scores, CGPA)', 'You, your committee head and the admin'],
   ['Your focus sessions and planned study sessions', 'You, your committee head and the admin. They are notified when you finish a focus session or record a result'],
   ['Which days you checked in', 'You, your committee head and the admin (the days only)'],
+  ['Your prayer requests to the committee', 'You, your committee head and the admin'],
+  ['Prayer points you share', 'Every member, with your first name'],
   ['Your check-in notes and memorised verses', 'Only you'],
   ['Totals for your level', 'The committee, as totals only (hidden when fewer than 3 people)'],
 ];
