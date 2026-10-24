@@ -10,7 +10,7 @@ export function LevelPicker({ state, defaultValue, name = 'level', legend = 'Lev
         {LEVELS.map((l) => (
           <label key={l} className="relative">
             <input type="radio" name={name} value={l} defaultChecked={Number(defaultValue) === l} className="peer sr-only" />
-            <span className="num flex min-h-11 cursor-pointer items-center justify-center rounded-md border border-stone bg-surface text-sm font-semibold peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-ink">
+            <span className="num flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-stone bg-surface text-sm font-semibold peer-checked:border-lavender-strong peer-checked:bg-lavender-strong peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-ink">
               {l}L
             </span>
           </label>

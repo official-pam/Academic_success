@@ -29,34 +29,39 @@ export default async function TodayPage({ searchParams }) {
   const nextAssignment = assignmentRes.data;
   const latest = announcementRes.data;
 
+  const nextSession = sessions.find((s) => !s.done_at);
+
   return (
-    <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-12">
-      <div className="grid content-start gap-8">
+    <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-10">
+      <div className="grid content-start gap-6">
         <div>
-          <p className="text-sm text-muted">
-            {greeting()}, {firstName(profile)} · {formatDay(today)}
-          </p>
-          {goal ? (
-            <>
-              <h1 className="mt-3 text-2xl font-bold tracking-tight md:text-[2rem] md:leading-tight">{goal.title}</h1>
-              <p className="mt-2 text-base text-muted">
-                {goal.minutes_per_day ? `${goal.minutes_per_day} minutes a day · ` : ''}
-                {goal.days_per_week === 7 ? 'every day' : `${goal.days_per_week} days a week`} ·{' '}
-                <Link href="/plan#goal" className="font-medium text-ink underline underline-offset-4">Change</Link>
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="mt-3 text-2xl font-bold tracking-tight">Set a reading goal</h1>
-              <p className="mt-2 text-base">A small daily target is easier to keep. <Link href="/plan#goal" className="font-semibold underline underline-offset-4">Set your goal</Link></p>
-            </>
-          )}
+          <p className="text-sm text-muted">{greeting()}, {firstName(profile)}</p>
+          <h1 className="display mt-1 text-[2.5rem] leading-[1.05] md:text-[3rem]">Make room<br />for focus.</h1>
+          <p className="mt-2 text-sm text-muted">{formatDay(today)}</p>
           {welcome && (
-            <p role="status" className="mt-4 rounded-md bg-sage-wash px-3 py-2 text-sm text-sage-ink">
+            <p role="status" className="mt-4 rounded-[var(--radius-control)] bg-sage-wash px-4 py-3 text-sm text-sage-ink">
               You're set up. Tap "I read today" whenever you've done your reading.
             </p>
           )}
         </div>
+
+        {/* Daily reading goal */}
+        <section className="panel flex items-center gap-4 p-4" aria-labelledby="goal-heading">
+          <span className="icon-tile bg-lavender-wash text-lavender-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+              <path d="M12 6.5C10 5 7 4.5 4 5v13c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V5c-3-.5-6 0-8 1.5zM12 6.5v13" strokeLinejoin="round" />
+            </svg>
+          </span>
+          <div className="min-w-0 flex-1">
+            <h2 id="goal-heading" className="text-sm font-bold">{goal ? goal.title : 'Daily reading'}</h2>
+            <p className="text-sm text-muted">
+              {goal
+                ? `${goal.minutes_per_day ? `${goal.minutes_per_day} min a day · ` : ''}${goal.days_per_week === 7 ? 'every day' : `${goal.days_per_week} days a week`}`
+                : 'A small daily target is easier to keep.'}
+            </p>
+          </div>
+          <Link href="/plan#goal" className="btn btn-ghost min-h-9 px-3 text-xs">{goal ? 'Change' : 'Set goal'}</Link>
+        </section>
 
         {loadFailed ? (
           <div role="alert" className="panel grid gap-2 p-5">
@@ -77,19 +82,32 @@ export default async function TodayPage({ searchParams }) {
           />
         )}
 
-        <section aria-labelledby="today-plan">
-          <div className="flex items-baseline justify-between">
-            <h2 id="today-plan" className="text-base font-bold">On your plan today</h2>
-            <Link href="/plan" className="text-sm font-medium underline underline-offset-4">Open plan</Link>
+        {/* Next up + today's plan */}
+        <section className="panel p-4" aria-labelledby="today-plan">
+          <div className="flex items-center gap-4">
+            <span className="icon-tile bg-slate-wash text-slate-ink">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                <path d="M5 6h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM4 10h16M8 4v4M16 4v4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <div className="min-w-0 flex-1">
+              <h2 id="today-plan" className="text-xs font-semibold text-muted">{nextSession ? 'Next up' : 'On your plan today'}</h2>
+              {nextSession ? (
+                <p className="font-semibold">{nextSession.title}</p>
+              ) : (
+                <p className="text-sm">{sessions.length ? 'All done for today.' : 'Nothing scheduled.'}</p>
+              )}
+            </div>
+            <Link href="/plan" className="text-sm font-semibold text-lavender-ink underline-offset-4 hover:underline">Plan</Link>
           </div>
           {sessions.length ? (
-            <ul className="mt-3 divide-y divide-rule border-y border-rule">
+            <ul className="mt-4 grid gap-2">
               {sessions.map((s) => (
-                <li key={s.id} className="flex items-baseline gap-4 py-3">
-                  <span className="num w-20 shrink-0 text-sm text-muted">{s.start_time ? formatTime(s.start_time) : 'Any time'}</span>
+                <li key={s.id} className="flex items-baseline gap-3 rounded-[var(--radius-control)] bg-paper px-3 py-2.5">
+                  <span className="num w-16 shrink-0 text-xs text-muted">{s.start_time ? formatTime(s.start_time) : 'Any time'}</span>
                   <span className="min-w-0 flex-1">
-                    <span className={`font-semibold ${s.done_at ? 'text-muted line-through' : ''}`}>{s.title}</span>
-                    <span className="block text-sm text-muted">
+                    <span className={`text-sm font-semibold ${s.done_at ? 'text-muted line-through' : ''}`}>{s.title}</span>
+                    <span className="block text-xs text-muted">
                       {s.kind === 'exam' ? 'Exam' : 'Reading'}{s.duration_min ? ` · ${s.duration_min} min` : ''}{s.done_at ? ' · done' : ''}
                     </span>
                   </span>
@@ -97,36 +115,48 @@ export default async function TodayPage({ searchParams }) {
               ))}
             </ul>
           ) : (
-            <p className="mt-3 border-y border-rule py-3 text-sm text-muted">
-              Nothing scheduled. <Link href="/plan#add" className="font-medium text-ink underline underline-offset-4">Add a study session</Link>
-            </p>
+            <Link href="/plan#add" className="btn btn-soft mt-4 w-full">Add a study session <span aria-hidden="true">→</span></Link>
           )}
         </section>
       </div>
 
-      <aside className="grid content-start gap-6 md:pt-10" aria-label="Coming up">
-        <section className="panel p-4" aria-labelledby="next-deadline">
-          <h2 id="next-deadline" className="text-sm font-semibold text-muted">Next deadline</h2>
+      <aside className="grid content-start gap-4 md:pt-[7.5rem]" aria-label="Coming up">
+        <section aria-labelledby="next-deadline">
           {nextAssignment ? (
-            <Link href={`/assignments/${nextAssignment.id}`} className="mt-2 block rounded hover:underline">
-              <span className="block font-bold">{nextAssignment.title}</span>
-              <span className="mt-1 block text-sm">
-                Due {relativeDue(nextAssignment.due_at)} · {formatDateTime(nextAssignment.due_at, { weekday: 'short', day: 'numeric', month: 'short' })}
+            <Link href={`/assignments/${nextAssignment.id}`} className="panel flex items-center gap-4 p-4 hover:bg-paper">
+              <span className="icon-tile bg-rose-wash text-rose-ink">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM14 3v4h4M9 12h6M9 16h4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <span className="min-w-0 flex-1">
+                <span id="next-deadline" className="block text-xs font-semibold text-muted">Next assignment</span>
+                <span className="block truncate text-sm font-semibold">{nextAssignment.title}</span>
+              </span>
+              <span className="text-right text-xs text-muted">
+                Due<span className="block font-semibold text-ink">{formatDateTime(nextAssignment.due_at, { weekday: 'short', day: 'numeric', month: 'short' })}</span>
+                <span className="sr-only"> ({relativeDue(nextAssignment.due_at)})</span>
               </span>
             </Link>
           ) : (
-            <p className="mt-2 text-sm">No assignments due for {levelLabel(profile.level)} right now.</p>
+            <div className="panel p-4">
+              <h2 id="next-deadline" className="text-xs font-semibold text-muted">Next assignment</h2>
+              <p className="mt-1 text-sm">Nothing due for {levelLabel(profile.level)} right now.</p>
+            </div>
           )}
         </section>
-        <section className="panel p-4" aria-labelledby="latest-update">
-          <h2 id="latest-update" className="text-sm font-semibold text-muted">Latest from the committee</h2>
+        <section aria-labelledby="latest-update">
           {latest ? (
-            <Link href={`/updates/${latest.id}`} className="mt-2 block rounded hover:underline">
-              <span className="block font-bold">{latest.title}</span>
-              <span className="mt-1 block text-sm">{formatDateTime(latest.published_at, { day: 'numeric', month: 'short' })}</span>
+            <Link href={`/updates/${latest.id}`} className="card-lavender block p-4 hover:brightness-[0.98]">
+              <span id="latest-update" className="block text-xs font-semibold text-lavender-ink">Latest from the committee</span>
+              <span className="mt-1 block font-semibold">{latest.title}</span>
+              <span className="mt-1 block text-xs text-muted">{formatDateTime(latest.published_at, { day: 'numeric', month: 'short' })}</span>
             </Link>
           ) : (
-            <p className="mt-2 text-sm">No updates yet.</p>
+            <div className="card-lavender p-4">
+              <h2 id="latest-update" className="text-xs font-semibold text-lavender-ink">Latest from the committee</h2>
+              <p className="mt-1 text-sm">No updates yet.</p>
+            </div>
           )}
         </section>
       </aside>

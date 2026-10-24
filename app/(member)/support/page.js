@@ -23,7 +23,7 @@ export default async function SupportPage() {
     <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_17rem]">
       <section aria-labelledby="prayer-heading" className="grid content-start gap-5">
         <div>
-          <h1 id="prayer-heading" className="text-2xl font-bold tracking-tight">Prayer points</h1>
+          <h1 id="prayer-heading" className="display text-[2.25rem] leading-[1.08]">Prayer points</h1>
           {current && (
             <p className="mt-1 text-sm text-muted">
               {current.week_of === thisWeek ? 'This week' : 'Most recent'} · week of {formatDay(current.week_of, { day: 'numeric', month: 'long' })}
@@ -37,7 +37,7 @@ export default async function SupportPage() {
             <ol className="grid gap-0 divide-y divide-rule border-y border-rule">
               {current.points.map((p, i) => (
                 <li key={i} className="grid grid-cols-[2rem_1fr] py-4 text-lg leading-relaxed">
-                  <span className="num text-base font-semibold text-clay-ink">{i + 1}.</span>
+                  <span className="num text-base font-semibold text-lavender-ink">{i + 1}.</span>
                   <span>{p}</span>
                 </li>
               ))}

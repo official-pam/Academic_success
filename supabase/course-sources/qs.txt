@@ -1,0 +1,71 @@
+# SET | Quantity Surveying | https://futminna.edu.ng/set/wp-content/uploads/sites/10/2026/04/QS_students_Handbook_CCMAS_1st-Dec-2025-1.pdf | Quantity Surveying Students' Handbook (CCMAS, 1 Dec 2025), course structure tables 3.1-3.10 (pp. 9-14)
+GST 111|Communication in English|2|C|100|1
+MTH 101|Elementary Mathematics I|3|C|100|1
+PHY 101|General Physics I|2|C|100|1
+QTS 101|Introduction to Quantity Surveying|2|C|100|1
+QTS 102|Principles of Measurement of Building Works|2|C|100|1
+QTS 104|Introduction to Tendering and Estimating|2|C|100|1
+FUTM-QTS 111|Construction Technology I|2|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|2
+MTH 102|Elementary Mathematics II|3|C|100|2
+PHY 102|General Physics II|2|C|100|2
+COS 102|Introduction to Problem Solving|3|C|100|2
+QTS 103|Introduction to Measurement of Building Works|2|C|100|2
+FUTM-QTS 121|Basic Elements of Planning|2|C|100|2
+FUTM-QTS 122|Economics for the Built Environment|2|C|100|2
+GST 212|Philosophy, Logic and Human Existence|2|C|200|1
+ENT 211|Entrepreneurship and Innovation|2|C|200|1
+STA 212|Introduction to Social and Economic Statistics|2|C|200|1
+QTS 201|Measurement of Building Works I|2|C|200|1
+QTS 203|Principles of Tendering and Estimating I|2|C|200|1
+FUTM-QTS 211|Construction Technology II|2|C|200|1
+FUTM-QTS 212|Civil Engineering Construction I|2|C|200|1
+FUTM-QTS 214|Surveying and Site Analysis|2|C|200|1
+QTS 202|Measurement of Building Works II|3|C|200|2
+QTS 204|Principles of Tendering and Estimating II|2|C|200|2
+QTS 205|Introduction to AutoCAD and BIM for Quantity Surveyors|3|C|200|2
+STA 221|Statistical Inference I|2|C|200|2
+FUTM-QTS 221|Construction Technology III|2|C|200|2
+FUTM-QTS 222|Civil Engineering Construction II|2|C|200|2
+FUTM-EVT 200|Students' Work Experience Programme (SWEP)|2|C|200|2
+FUTM-QTS 223|Construction Maintenance Management|2|E|200|2
+FUTM-QTS 224|Fundamentals of Occupational Health and Safety in Built Environment|2|E|200|2
+FUTM-QTS 225|Sustainable Construction Practice|2|E|200|2
+GST 312|Peace and Conflict Resolution|2|C|300|1
+ENT 312|Venture Creation|2|C|300|1
+QTS 301|Advanced Measurement of Building Works I|3|C|300|1
+QTS 303|Construction Commercial Management I|2|C|300|1
+QTS 305|Construction Economics I|2|C|300|1
+FUTM-QTS 311|Construction Technology IV|2|C|300|1
+FUTM-QTS 313|Building Services and Equipment I|2|C|300|1
+FUTM-QTS 314|Cost Accounting|2|C|300|1
+QTS 302|Advanced Measurement of Building Works II|3|C|300|2
+QTS 304|Construction Commercial Management II|2|C|300|2
+QTS 306|Construction Economics II|2|C|300|2
+QTS 307|Introduction to Law of Torts and Building Contracts|2|C|300|2
+QTS 308|Introduction to Construction Management|3|C|300|2
+FUTM-QTS 321|Construction Technology V|2|C|300|2
+FUTM-QTS 322|Building Services and Equipment II|2|C|300|2
+QTS 401|Civil Engineering Measurement|3|C|400|1
+QTS 403|Advanced Construction Cost Studies and Commercial Management|2|C|400|1
+QTS 405|Computer Laboratory Workshop: Application of Quantity Surveying Software and Building Information Modelling|2|C|400|1
+QTS 407|Professional Practice and Procedure I|2|C|400|1
+QTS 409|Introduction to Research Methods|2|C|400|1
+QTS 411|Construction Economics III|2|C|400|1
+QTS 413|Construction Project Management|3|C|400|1
+FUTM-QTS 411|Construction Technology VI|2|C|400|1
+QTS 402|SIWES|6|C|400|2
+QTS 510|Integrated Quantity Surveying Studio I|2|C|500|1
+QTS 501|Measurement of Mechanical, Electrical and Plumbing Installations|3|C|500|1
+QTS 502|Procurement and Measurement of Industrial Engineering Works|2|C|500|1
+QTS 503|Advanced Construction Economics|2|C|500|1
+QTS 504|Public Project Procurement|2|C|500|1
+FUTM-QTS 511|Innovation in Construction Management|2|C|500|1
+FUTM-QTS 512|Construction Financial Management|2|C|500|1
+QTS 522|Project|6|C|500|2
+QTS 511|Integrated Quantity Surveying Studio II|2|C|500|2
+QTS 505|Construction Contract and Administration|3|C|500|2
+FUTM-QTS 524|Specification Writing in Construction|2|C|500|2
+FUTM-QTS 521|Safety Management in Construction Projects|2|E|500|2
+FUTM-QTS 522|Operations Research|2|E|500|2
+FUTM-QTS 523|Building Contracts Law and Alternative Dispute Resolution|2|E|500|2

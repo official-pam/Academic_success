@@ -12,7 +12,7 @@ export default async function OnboardingPage() {
   return (
     <main id="main" className="mx-auto max-w-md px-5 py-8">
       <Wordmark />
-      <h1 className="mt-10 text-2xl font-bold tracking-tight">Set up your reading</h1>
+      <h1 className="mt-10 display text-[2.25rem] leading-[1.08]">Set up your reading</h1>
       <p className="mt-2 text-base text-muted">
         Your level and department decide which assignments and updates you see.
       </p>

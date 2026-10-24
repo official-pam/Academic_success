@@ -16,7 +16,7 @@ export default async function EditAnnouncement({ params }) {
   return (
     <div className="grid gap-6">
       <Link href="/admin/announcements" className="text-sm font-medium underline underline-offset-4">← Announcements</Link>
-      <div className="flex items-center gap-3"><h1 className="text-2xl font-bold tracking-tight">Edit announcement</h1><StatusChip status={item.status} /></div>
+      <div className="flex items-center gap-3"><h1 className="display text-[2.25rem] leading-[1.08]">Edit announcement</h1><StatusChip status={item.status} /></div>
       <RefreshingForm action={setAnnouncementStatus} className="flex gap-2">
         <input type="hidden" name="id" value={item.id} />
         {item.status !== 'archived'

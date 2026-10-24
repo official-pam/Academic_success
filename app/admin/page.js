@@ -42,7 +42,7 @@ export default async function ParticipationPage({ searchParams }) {
     <div className="grid gap-10">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Participation</h1>
+          <h1 className="display text-[2.25rem] leading-[1.08]">Participation</h1>
           <p className="mt-1 text-sm text-muted">
             Week of {formatDay(ws, { day: 'numeric', month: 'long' })}{isCurrent ? ' (this week, so far)' : ''}
           </p>
@@ -82,7 +82,7 @@ export default async function ParticipationPage({ searchParams }) {
                       <td className="px-4 py-3 text-right">{p === null ? <span className="text-muted" title={`Hidden for groups under ${MIN_GROUP}`}>—</span> : <>{r.active} <span className="text-muted">({p}%)</span></>}</td>
                       <td className="px-4 py-3">
                         <div className="h-2.5 w-full rounded-sm bg-stone/60" aria-hidden="true">
-                          <div className="h-full rounded-sm bg-clay" style={{ width: `${p ?? 0}%` }} />
+                          <div className="h-full rounded-sm bg-sage" style={{ width: `${p ?? 0}%` }} />
                         </div>
                       </td>
                       <td className="px-4 py-3 text-right">{p === null ? <span className="text-muted">—</span> : r.checkins}</td>

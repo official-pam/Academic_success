@@ -29,7 +29,7 @@ export default async function EditAssignment({ params }) {
     <div className="grid gap-6">
       <Link href="/admin/assignments" className="text-sm font-medium underline underline-offset-4">← Assignments</Link>
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Edit assignment</h1>
+        <h1 className="display text-[2.25rem] leading-[1.08]">Edit assignment</h1>
         <StatusChip status={a.status} />
       </div>
       <div className="flex flex-wrap gap-2">

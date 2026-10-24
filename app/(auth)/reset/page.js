@@ -8,7 +8,7 @@ export default function ResetPage() {
   const [state, action] = useActionState(requestReset, null);
   return (
     <>
-      <h1 className="text-2xl font-bold tracking-tight">Reset your password</h1>
+      <h1 className="display text-[2.25rem] leading-[1.08]">Reset your password</h1>
       <p className="mt-2 text-base text-muted">We'll email you a link to choose a new one.</p>
       <form action={action} className="mt-8 grid gap-5" noValidate>
         <div className="field">

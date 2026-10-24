@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <main id="main" className="mx-auto max-w-xl px-5 py-8">
       <Link href="/today" aria-label="TLV Academic home"><Wordmark /></Link>
-      <h1 className="mt-10 text-2xl font-bold tracking-tight">Who can see what</h1>
+      <h1 className="mt-10 display text-[2.25rem] leading-[1.08]">Who can see what</h1>
       <p className="mt-3 text-base">
         This app exists to help you read consistently and to help the committee notice when a level needs
         support, never to rank or shame anyone. We collect only what that needs.

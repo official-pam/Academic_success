@@ -1,0 +1,87 @@
+# SIPET | Mechanical Engineering | https://futminna.edu.ng/sipet/wp-content/uploads/sites/6/2026/05/Mechanical-Engineering-Students-Handbook.pdf | Mechanical Engineering Students' Handbook, programme structure (pp. 24-28)
+GST 111|Communication in English|2|C|100|1
+GET 101|Engineer in Society|1|C|100|1
+GET 102|Engineering Graphics and Solid Modelling I|2|C|100|1
+CHM 101|General Chemistry I|2|C|100|1
+CHM 107|General Practical Chemistry I|1|C|100|1
+MTH 101|Elementary Mathematics I (Algebra and Trigonometry)|3|C|100|1
+PHY 101|General Physics I (Mechanics)|2|C|100|1
+PHY 107|General Practical Physics I|1|C|100|1
+MEE 101|Introduction to Mechanical Engineering|1|C|100|1
+FUTM-COS 111|Introduction to Computing Sciences|3|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|2
+CHM 102|General Chemistry II|2|C|100|2
+CHM 108|General Practical Chemistry II|1|C|100|2
+MTH 102|Elementary Mathematics II (Calculus)|3|C|100|2
+MTH 103|Elementary Mathematics III (Vectors, Geometry and Dynamics)|2|C|100|2
+PHY 103|General Physics II (Behaviour of Matter)|2|C|100|2
+PHY 108|General Practical Physics II|1|C|100|2
+FUTM-PHY 122|General Physics III (Electricity and Magnetism)|2|C|100|2
+FUTM-PHY 124|General Physics IV (Vibration, Waves and Optics)|2|C|100|2
+FUTM-STA 122|Probability I|2|C|100|2
+GET 201|Applied Electricity I|3|C|200|1
+GET 205|Fundamentals of Fluid Mechanics|3|C|200|1
+GET 209|Engineering Mathematics I|3|C|200|1
+GET 211|Computing and Software Engineering|3|C|200|1
+ENT 211|Entrepreneurship and Innovation|2|C|200|1
+FUTM-GET 213|Engineering Graphics and Solid Modelling II|3|C|200|1
+FUTM-GET 217|Applied Mechanics|3|C|200|1
+GST 212|Philosophy, Logic and Human Existence|2|C|200|2
+GET 202|Engineering Materials|3|C|200|2
+GET 204|Students Workshop Practice|2|C|200|2
+GET 206|Fundamentals of Thermodynamics|3|C|200|2
+GET 208|Strength of Materials|3|C|200|2
+GET 210|Engineering Mathematics II|3|C|200|2
+GET 299|SIWES I (graded in 400 Level second semester)|3|C|200|2
+GET 301|Engineering Mathematics III|3|C|300|1
+GET 305|Engineering Statistics and Data Analytics|3|C|300|1
+GET 307|Introduction to Artificial Intelligence, Machine Learning and Convergent Technologies|3|C|300|1
+FUTM-GET 311|Engineering Economics|3|C|300|1
+FUTM-MEE 312|Fluid Mechanics II|2|C|300|1
+FUTM-MEE 313|Laboratory Practical I|2|C|300|1
+FUTM-MEE 321|Manufacturing Technology|2|C|300|1
+FUTM-MEE 322|Thermodynamics II|2|C|300|1
+GET 302|Engineering Mathematics IV|3|C|300|2
+GET 304|Technical Writing and Communication (including Seminar Presentation Skills)|3|C|300|2
+GST 312|Peace and Conflict Resolution|2|C|300|2
+ENT 312|Venture Creation|2|C|300|2
+GET 306|Renewable Energy Systems and Technology|3|C|300|2
+MEE 301|Computer-Aided Design and Manufacture|2|C|300|2
+FUTM-MEE 323|Laboratory Practical II|2|C|300|2
+FUTM-MEE 324|Engineering Drawing and Design I|1|C|300|2
+FUTM-MEE 325|Strength of Materials II|2|C|300|2
+GET 399|SIWES II (graded in 400 Level second semester)|4|C|300|2
+GET 404|Engineering Valuation and Appraisal|2|C|400|1
+MEE 401|Mechanical Engineering (Machine) Design II|2|C|400|1
+MEE 402|Theory (Mechanics) of Machines|2|C|400|1
+MEE 403|Applied Engineering Thermodynamics|2|C|400|1
+MEE 404|Applied Fluid Mechanics|2|C|400|1
+MEE 405|Heat and Mass Transfer|2|C|400|1
+MEE 406|Advanced Mechanics of Materials|2|C|400|1
+FUTM-MEE 411|Control Systems|2|C|400|1
+FUTM-MEE 412|Mechanical Vibration|2|C|400|1
+GET 402|Engineering Project I|2|C|400|2
+GET 499|SIWES III|4|C|400|2
+GET 501|Engineering Project Management|3|C|500|1
+MEE 503|Applied Design|2|C|500|1
+FUTM-GET 511|Engineering Management|2|C|500|1
+FUTM-MEE 511|Engineering Material Selection and Economics|2|C|500|1
+FUTM-MEE 512|Thermal Engines|2|C|500|1
+FUTM-MEE 513|Laboratory Practical III|2|C|500|1
+FUTM-MEE 514|Refrigeration and Air Conditioning|2|C|500|1
+FUTM-MEE 515|Energy Studies and Environment|2|E|500|1
+FUTM-MEE 516|Tool Design|2|E|500|1
+FUTM-MEE 517|Operations Research|2|E|500|1
+FUTM-MEE 518|Production Planning and Control|2|E|500|1
+FUTM-MEE 519|Automotive Workshop Practice|2|E|500|1
+GET 502|Engineering Law|2|C|500|2
+MEE 509|B.Eng. Project|6|C|500|2
+FUTM-MEE 521|Fatigue and Fracture Mechanics|2|C|500|2
+FUTM-MEE 522|Thermodynamics III|2|C|500|2
+FUTM-MEE 523|Laboratory Practical IV|2|C|500|2
+FUTM-MEE 524|Automobile Systems and Vehicle Dynamics|2|E|500|2
+FUTM-MEE 525|Machine Tools|2|E|500|2
+FUTM-MEE 526|Industrial Engineering Statistics|2|E|500|2
+FUTM-MEE 527|Metrology|2|E|500|2
+FUTM-MEE 528|Mechanics of Deformable Bodies|2|E|500|2
+FUTM-MEE 529|Theory of Elasticity|2|E|500|2

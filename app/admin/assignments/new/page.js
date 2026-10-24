@@ -10,7 +10,7 @@ export default async function NewAssignment() {
   return (
     <div className="grid gap-6">
       <Link href="/admin/assignments" className="text-sm font-medium underline underline-offset-4">← Assignments</Link>
-      <h1 className="text-2xl font-bold tracking-tight">New assignment</h1>
+      <h1 className="display text-[2.25rem] leading-[1.08]">New assignment</h1>
       <AssignmentForm profile={profile} today={lagosToday()} />
     </div>
   );

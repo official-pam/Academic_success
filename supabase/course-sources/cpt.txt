@@ -1,0 +1,60 @@
+# SICT | Computer Science | https://futminna.edu.ng/sict/wp-content/uploads/sites/5/2026/04/UPDATED-CCMAS-2024-Printed-New-Curriculum-LAST-2-1.pdf | Department of Computer Science CCMAS 2024 curriculum, programme structure (pp. 19-23)
+GST 111|Communication in English|2|C|100|1
+MTH 101|Elementary Mathematics I|3|C|100|1
+PHY 101|General Physics I|2|C|100|1
+PHY 107|General Practical Physics I|1|C|100|1
+COS 101|Introduction to Computing Sciences|3|C|100|1
+FUTM-CPT 111|Probability for Computer Science|3|C|100|1
+FUTM-CPT 112|Front-End Web Development|3|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|2
+MTH 102|Elementary Mathematics II|3|C|100|2
+PHY 102|General Physics II|2|C|100|2
+PHY 108|General Practical Physics II|1|C|100|2
+STA 111|Descriptive Statistics|3|C|100|2
+COS 102|Introduction to Problem Solving|3|C|100|2
+FUTM-CPT 122|Introduction to Computer Hardware Systems and Maintenance|3|C|100|2
+GST 212|Philosophy, Logic and Human Existence|2|C|200|1
+ENT 211|Entrepreneurship and Innovation|2|C|200|1
+MTH 201|Mathematical Methods I|2|C|200|1
+COS 201|Computer Programming I|3|C|200|1
+IFT 211|Digital Logic Design|2|C|200|1
+SEN 201|Introduction to Software Engineering|2|C|200|1
+FUTM-CPT 211|Back-End Web Development|2|C|200|1
+FUTM-CPT 212|Inferential Statistics for Computer Science|2|C|200|1
+MTH 202|Elementary Differential Equations|2|C|200|2
+COS 202|Computer Programming II|3|C|200|2
+CSC 203|Discrete Structures|2|C|200|2
+IFT 212|Computer Architecture and Organization|2|C|200|2
+FUTM-CPT 221|Numerical Computation for Computer Science|2|C|200|2
+FUTM-CPT 222|Server-Side Web Development|3|C|200|2
+FUTM-CPT 223|System Concept and Design|3|C|200|2
+CSC 308|Operating Systems|3|C|300|1
+CSC 301|Data Structures|3|C|300|1
+CSC 309|Artificial Intelligence|2|C|300|1
+CYB 201|Introduction to Cyber Security and Strategy|2|C|300|1
+ICT 305|Data Communication System and Network|3|C|300|1
+FUTM-CPT 311|Programming Language Translation and Compiler Design|3|C|300|1
+FUTM-CPT 312|Object-Oriented Analysis, Design and Implementation|2|C|300|1
+GST 312|Peace and Conflict Resolution|2|C|300|2
+ENT 312|Venture Creation|2|C|300|2
+CSC 322|Computer Science Innovation and New Technologies|2|C|300|2
+DTS 304|Data Management I|3|C|300|2
+FUTM-CPT 321|Human Computer Interaction|3|C|300|2
+FUTM-CPT 322|Theory of Computing|3|C|300|2
+FUTM-CPT 323|Mobile Application Development for Android Platform|3|C|300|2
+COS 409|Research Methodology and Technical Report Writing|3|C|400|1
+CSC 401|Algorithms and Complexity Analysis|2|C|400|1
+CSC 402|Ethics and Legal Issues in Computer Science|2|C|400|1
+INS 401|Project Management|2|C|400|1
+FUTM-CPT 411|Introduction to Machine Learning for Data Mining|3|C|400|1
+FUTM-CPT 412|Advanced Visual Programming with VB.net|3|C|400|1
+CSC 499|SIWES I and II|6|C|400|2
+FUTM-CPT 511|Introduction to Cloud Computing|3|C|500|1
+FUTM-CPT 512|Operation Research|3|C|500|1
+FUTM-CPT 513|Introduction to Applied Neural Network and Deep Learning|3|C|500|1
+FUTM-CPT 514|Introduction to Natural Language Processing|3|C|500|1
+FUTM-CPT 515|Advanced Database Systems|3|C|500|1
+FUTM-CPT 521|Big Data Analytics|3|C|500|2
+FUTM-CPT 522|Computer System Performance Evaluation|3|C|500|2
+FUTM-CPT 523|Introduction to Computer Vision|3|C|500|2
+CSC 598|Final Year Project I and II|6|C|500|2

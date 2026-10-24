@@ -65,7 +65,7 @@ try {
   const amaka = await newUser('Amaka Okafor', email('amaka'), 200, 'Chemistry');
   let p = amaka.page;
   ok(await see(p.getByText("You're set up")), 'onboarding lands on Today with a welcome');
-  ok(await see(p.getByRole('heading', { level: 1, name: 'Read for 30 minutes' })), 'Today shows the starter reading goal');
+  ok(await see(p.getByRole('heading', { level: 2, name: 'Read for 30 minutes' })), 'Today shows the starter reading goal');
   await shot(p, '02-today-before');
   const t0 = Date.now();
   await p.getByRole('button', { name: 'I read today' }).click();

@@ -148,22 +148,22 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
       <h2 id="checkin-heading" className="sr-only">Today's check-in</h2>
 
       {status === 'done' ? (
-        <div role="status" className="flex items-center gap-4 rounded-[var(--radius-panel)] bg-ink px-5 py-4 text-paper">
-          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#C65B37" /><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        <div role="status" className="card-sage flex items-center gap-4 px-5 py-4">
+          <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#4A6145" /><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>
           <div className="min-w-0">
             <p className="text-base font-bold">You read today</p>
-            <p className="text-sm text-paper/75">
+            <p className="text-sm text-sage-ink">
               Recorded{record?.created_at ? ` at ${formatDateTime(record.created_at, { hour: 'numeric', minute: '2-digit' })}` : ''}
               {record?.minutes ? ` · ${record.minutes} min` : ''}
             </p>
           </div>
         </div>
       ) : status === 'pending' ? (
-        <div role="status" className="flex items-center gap-4 rounded-[var(--radius-panel)] border-2 border-dashed border-clay-ink bg-clay-wash px-5 py-4">
-          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#A3452A" strokeWidth="2" strokeDasharray="4 3" /><path d="M12 7v5l3 2" stroke="#A3452A" strokeWidth="2" fill="none" strokeLinecap="round" /></svg>
+        <div role="status" className="flex items-center gap-4 rounded-[var(--radius-panel)] border-2 border-dashed border-rose-ink bg-rose-wash px-5 py-4">
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#86475A" strokeWidth="2" strokeDasharray="4 3" /><path d="M12 7v5l3 2" stroke="#86475A" strokeWidth="2" fill="none" strokeLinecap="round" /></svg>
           <div>
             <p className="text-base font-bold">Saved on this phone</p>
-            <p className="text-sm text-clay-ink">Not synced yet. It will send when you're back online.</p>
+            <p className="text-sm text-rose-ink">Not synced yet. It will send when you're back online.</p>
           </div>
         </div>
       ) : (
@@ -172,7 +172,7 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
           onClick={checkIn}
           disabled={status === 'sending' || !ready}
           aria-busy={status === 'sending' || !ready}
-          className="btn btn-primary min-h-16 w-full text-lg"
+          className="btn btn-primary min-h-16 w-full text-lg shadow-[var(--shadow-soft)]"
         >
           {status === 'sending' ? 'Recording…' : ready ? 'I read today' : 'Loading…'}
         </button>
@@ -204,11 +204,19 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
         </form>
       )}
 
-      <div className="grid gap-3">
-        <p className="text-lg font-semibold tracking-tight">
-          <span className="num">{count}</span> of <span className="num">{goalDays}</span> days this week
-          {pendingThisWeek.length > 0 && <span className="text-base font-medium text-clay-ink"> ({pendingThisWeek.length} waiting to sync)</span>}
-        </p>
+      <div className="panel grid gap-4 p-4">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm font-bold">
+<span className="num">{count}</span> of <span className="num">{goalDays}</span> days this week
+            {pendingThisWeek.length > 0 && <span className="font-medium text-rose-ink"> ({pendingThisWeek.length} waiting to sync)</span>}
+          </p>
+          {streakDays > 1 && (
+            <span className="chip bg-rose-wash text-rose-ink">
+              <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true" className="mr-1"><path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.2 1.2-3.6 2.4-4.6.3 1.7 1.2 2.6 2.1 2.6C11.5 8.5 11 6 12 3z" fill="currentColor" /></svg>
+              {streakDays}-day streak
+            </span>
+          )}
+        </div>
         <WeekStave days={weekDays} today={today} read={[...readThisWeek]} pending={pendingThisWeek} since={since} />
         <p className="text-sm text-muted">
           {count >= goalDays
@@ -216,7 +224,6 @@ export function CheckIn({ userId, today, todayCheckin, weekDays, weekRead, recen
             : left <= daysLeftInWeek
               ? `${left} more ${left === 1 ? 'day' : 'days'} to reach this week's goal.`
               : `${daysLeftInWeek} ${daysLeftInWeek === 1 ? 'day' : 'days'} left this week. Every day still counts.`}
-          {streakDays > 1 && ` ${streakDays}-day streak.`}
         </p>
       </div>
     </section>

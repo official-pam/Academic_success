@@ -12,7 +12,7 @@ export default async function ProfilePage() {
     <div className="grid max-w-2xl gap-12">
       <section aria-labelledby="profile-heading" className="grid gap-6">
         <div>
-          <h1 id="profile-heading" className="text-2xl font-bold tracking-tight">Profile</h1>
+          <h1 id="profile-heading" className="display text-[2.25rem] leading-[1.08]">Profile</h1>
           <p className="mt-1 text-sm text-muted">
             {user.email} · {ROLE_LABEL[profile.role]}{profile.role === 'coordinator' ? ` for ${levelLabel(profile.coordinator_level)}` : ''}
           </p>

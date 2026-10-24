@@ -33,7 +33,7 @@ export function ResourceList({ text }) {
         return (
           <li key={i} className="py-3 text-base">
             {m ? (
-              <a href={m[0]} target="_blank" rel="noopener noreferrer nofollow" className="font-semibold text-clay-ink underline underline-offset-2">
+              <a href={m[0]} target="_blank" rel="noopener noreferrer nofollow" className="font-semibold text-lavender-ink underline underline-offset-2">
                 {label || m[0].replace(/^https?:\/\/(www\.)?/, '').slice(0, 50)}
               </a>
             ) : (

@@ -14,7 +14,7 @@ export default async function AnnouncementPage({ params }) {
   return (
     <article className="max-w-2xl">
       <Link href="/updates" className="text-sm font-medium underline underline-offset-4">← Updates</Link>
-      <h1 className="mt-4 text-2xl font-bold tracking-tight">{a.title}</h1>
+      <h1 className="mt-4 display text-[2.25rem] leading-[1.08]">{a.title}</h1>
       <p className="mt-2 text-sm text-muted">{formatDateTime(a.published_at, { weekday: 'long', day: 'numeric', month: 'long' })} · {levelLabel(a.level)}</p>
       <RichText text={a.body} className="mt-6" />
     </article>

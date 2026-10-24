@@ -1,27 +1,45 @@
 @import "tailwindcss";
 @import "@fontsource-variable/manrope";
+@import "@fontsource-variable/fraunces";
 
 /*
-  TLV tokens. Palette from the committee's design spec (§7): Ink, Paper, Clay, Stone, Sage.
-  Clay and Sage do not reach 4.5:1 as text on Paper, so text uses their darker "-ink" steps;
-  the light values are kept for marks (the week stave, progress) where 3:1 is the bar.
-  8-point spacing; one face (Manrope); colour on data and the one primary action only.
+  TLV tokens, redesign (Oct 2026). Ivory paper, ink text, serif display headings, and four soft
+  accents: sage green (primary action, done), lavender (study/focus), slate blue (plan/info),
+  dusty rose (deadlines, offline/pending).
+  Text colours are the "-ink" steps, all at or above 4.5:1 on paper and on their wash.
+  Light accent values are for marks (progress bars, rings, week dots) where 3:1 is the bar.
 */
 @theme {
   --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces Variable", ui-serif, Georgia, serif;
 
-  --color-ink: #20221f;
-  --color-paper: #f1eee7;
-  --color-surface: #fbfaf7;
-  --color-stone: #dcd8cb;
-  --color-rule: #e6e2d8;
-  --color-muted: #565a53;
-  --color-clay: #c65b37;
-  --color-clay-ink: #a3452a;
-  --color-clay-wash: #f4e3da;
-  --color-sage: #657264;
-  --color-sage-ink: #4f5a4e;
-  --color-sage-wash: #e3e7df;
+  --color-ink: #1f2120;
+  --color-paper: #f7f4ee;
+  --color-surface: #ffffff;
+  --color-stone: #e4dfd4;
+  --color-rule: #ebe6dc;
+  --color-muted: #5f625b;
+
+  /* Owner palette (24 Oct): sage green primary, muted lavender, slate blue, dusty rose. No orange.
+     Base values are for fills and marks; "-ink" steps are for text (all >= 4.5:1 on paper and wash). */
+  --color-sage: #8fa58a;
+  --color-sage-strong: #7f9679;
+  --color-sage-ink: #4a6145;
+  --color-sage-wash: #e7eee4;
+
+  --color-lavender: #a78bce;
+  --color-lavender-ink: #5e4690;
+  --color-lavender-strong: #7a5fb0;
+  --color-lavender-wash: #efe9f7;
+
+  --color-slate: #7189a6;
+  --color-slate-ink: #3f5878;
+  --color-slate-wash: #e4eaf2;
+
+  --color-rose: #bc8795;
+  --color-rose-ink: #86475a;
+  --color-rose-wash: #f6e9ed;
+
   --color-notice: #fbf3dc;
   --color-notice-ink: #7a4b0c;
   --color-danger: #a8261f;
@@ -40,8 +58,9 @@
   --text-2xl: 1.875rem;
   --text-2xl--line-height: 2.25rem;
 
-  --radius-control: 6px;
-  --radius-panel: 10px;
+  --radius-control: 14px;
+  --radius-panel: 20px;
+  --shadow-soft: 0 1px 2px rgb(31 33 32 / 0.04), 0 6px 20px -8px rgb(31 33 32 / 0.08);
 }
 
 @layer base {
@@ -59,7 +78,7 @@
     border-radius: 2px;
   }
   ::selection {
-    background: var(--color-clay-wash);
+    background: var(--color-lavender-wash);
   }
   input, textarea, select {
     font: inherit;
@@ -69,33 +88,48 @@
 @layer components {
   .num { font-variant-numeric: tabular-nums; }
 
+  /* Serif display headings (page titles). Light weight, tight tracking, like the mockups. */
+  .display { font-family: var(--font-serif); font-weight: 380; letter-spacing: -0.02em; font-variation-settings: "opsz" 96, "SOFT" 50; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.14em] text-muted; }
+
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] px-4 text-sm font-semibold transition-[background-color,transform] duration-100 select-none;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold transition-[background-color,transform] duration-100 select-none;
   }
   .btn:active:not(:disabled) { transform: scale(0.98); }
   .btn:disabled { @apply cursor-not-allowed opacity-60; }
-  .btn-primary { @apply bg-ink text-paper hover:bg-[#383b36]; }
+  .btn-primary { @apply bg-sage text-ink hover:bg-sage-strong; }
+  .btn-accent { @apply bg-lavender-strong text-white hover:bg-lavender-ink; }
+  .btn-soft { @apply bg-lavender-wash text-lavender-ink hover:bg-[#e2d9f7]; }
+  .btn-ink { @apply bg-ink text-paper hover:bg-[#383b36]; }
   .btn-quiet { @apply bg-transparent text-ink underline-offset-4 hover:underline; }
   .btn-outline { @apply border border-stone bg-surface text-ink hover:bg-paper; }
+  .btn-ghost { @apply bg-paper text-ink hover:bg-stone/60; }
   .btn-danger { @apply border border-danger/40 bg-surface text-danger hover:bg-danger-wash; }
 
   .field { @apply grid gap-1.5; }
   .label { @apply text-sm font-semibold text-ink; }
   .hint { @apply text-xs text-muted; }
   .input {
-    @apply min-h-11 w-full rounded-[var(--radius-control)] border border-[#b9b4a6] bg-surface px-3 text-base text-ink placeholder:text-muted;
+    @apply min-h-12 w-full rounded-[var(--radius-control)] border border-[#c9c3b5] bg-surface px-4 text-base text-ink placeholder:text-muted;
   }
   .input:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 1px; }
   .input[aria-invalid="true"] { @apply border-danger; }
   textarea.input { @apply py-2.5 leading-6; }
   .field-error { @apply text-sm text-danger; }
 
-  .panel { @apply rounded-[var(--radius-panel)] bg-surface; }
+  .panel { @apply rounded-[var(--radius-panel)] border border-rule bg-surface shadow-[var(--shadow-soft)]; }
+  .card-lavender { @apply rounded-[var(--radius-panel)] bg-lavender-wash; }
+  .card-sage { @apply rounded-[var(--radius-panel)] bg-sage-wash; }
+  .card-rose { @apply rounded-[var(--radius-panel)] bg-rose-wash; }
+  .card-slate { @apply rounded-[var(--radius-panel)] bg-slate-wash; }
+  .icon-tile { @apply flex size-10 shrink-0 items-center justify-center rounded-xl; }
+  .bar { @apply h-1.5 w-full overflow-hidden rounded-full bg-stone/70; }
+  .bar > span { @apply block h-full rounded-full; }
   .notice { @apply rounded-[var(--radius-control)] bg-notice px-3 py-2 text-sm text-notice-ink; }
-  .chip { @apply inline-flex h-6 items-center rounded px-2 text-xs font-semibold; }
+  .chip { @apply inline-flex h-6 items-center rounded-full px-2.5 text-xs font-semibold; }
 
   .prose-tlv p + p { margin-top: 0.75rem; }
-  .prose-tlv a { @apply text-clay-ink underline underline-offset-2; }
+  .prose-tlv a { @apply text-lavender-ink underline underline-offset-2; }
 }
 
 @media (prefers-reduced-motion: reduce) {

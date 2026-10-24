@@ -27,7 +27,7 @@ export default async function UpdatesPage({ searchParams }) {
   return (
     <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_17rem]">
       <section aria-labelledby="updates-heading" className="grid content-start gap-4">
-        <h1 id="updates-heading" className="text-2xl font-bold tracking-tight">Updates</h1>
+        <h1 id="updates-heading" className="display text-[2.25rem] leading-[1.08]">Updates</h1>
         {annRes.error ? (
           <div role="alert" className="panel grid gap-2 p-5"><p>Couldn't load updates.</p><Link href="/updates" className="btn btn-outline justify-self-start">Retry</Link></div>
         ) : list.length === 0 ? (
@@ -43,7 +43,7 @@ export default async function UpdatesPage({ searchParams }) {
                   </span>
                   <span className="mt-1 line-clamp-2 block text-sm text-muted">{a.body}</span>
                   <span className="mt-1 block text-xs text-muted">
-                    {a.pinned && !before ? <span className="font-semibold text-clay-ink">Pinned · </span> : null}{levelLabel(a.level)}
+                    {a.pinned && !before ? <span className="font-semibold text-rose-ink">Pinned · </span> : null}{levelLabel(a.level)}
                   </span>
                 </Link>
               </li>

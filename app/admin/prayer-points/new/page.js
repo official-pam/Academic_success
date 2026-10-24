@@ -8,7 +8,7 @@ export default async function NewPrayer() {
   return (
     <div className="grid gap-6">
       <Link href="/admin/prayer-points" className="text-sm font-medium underline underline-offset-4">← Prayer points</Link>
-      <h1 className="text-2xl font-bold tracking-tight">Prayer points for a week</h1>
+      <h1 className="display text-[2.25rem] leading-[1.08]">Prayer points for a week</h1>
       <PrayerForm thisMonday={weekStart(lagosToday())} />
     </div>
   );

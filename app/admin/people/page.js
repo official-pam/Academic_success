@@ -27,7 +27,7 @@ export default async function PeoplePage({ searchParams }) {
   return (
     <div className="grid gap-8">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">People and roles</h1>
+        <h1 className="display text-[2.25rem] leading-[1.08]">People and roles</h1>
         <p className="mt-1 text-sm text-muted">Appoint level coordinators and hand over the chairman role. Members see only names here; no records.</p>
       </div>
 

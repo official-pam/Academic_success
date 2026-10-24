@@ -15,7 +15,7 @@ export default async function AssignmentPage({ params }) {
   return (
     <article className="max-w-2xl">
       <Link href="/plan" className="text-sm font-medium underline underline-offset-4">← Plan</Link>
-      <h1 className="mt-4 text-2xl font-bold tracking-tight">{a.title}</h1>
+      <h1 className="mt-4 display text-[2.25rem] leading-[1.08]">{a.title}</h1>
       <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-sm">
         <dt className="text-muted">Due</dt>
         <dd className={overdue ? 'font-semibold text-danger' : 'font-semibold'}>

@@ -1,0 +1,63 @@
+# SSTE | Educational Technology | https://futminna.edu.ng/sste/wp-content/uploads/sites/9/2026/04/EDT-HandBook-CCMAS-Edited.pdf | Department of Educational Technology Students' Handbook (CCMAS, 2023-2028), course structure (pp. 21-25). Codes kept exactly as printed.
+GST 111|Communication in English|2|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|1
+EDT 101|Introduction to Educational Technology|2|C|100|1
+FUTM-EDT 104|Digital Library in Educational Technology|3|C|100|1
+FUTM-CPT 108|Management of Information System|3|C|100|1
+FUTM-CPT 107|Introduction to Computer System|3|C|100|1
+MTH 101|General Mathematics I|3|C|100|1
+FUTM-EDT 105|Human Computer Interaction|3|C|100|2
+FUTM-CPT 106|Internet Technology|3|C|100|2
+EDU 101|Introduction to Teaching and Foundations of Education|2|C|100|2
+EDT 102|Foundations of Educational Technology|2|C|100|2
+EDT 103|ICT Application in Education|2|C|100|2
+MTH 102|General Mathematics II|3|C|100|2
+COS 101|Introduction to Computer Science|3|C|100|2
+GST 212|Philosophy, Logic and Human Existence|2|C|200|1
+ENT 223|Entrepreneurship and Innovation|2|C|200|1
+EDU 201|Curriculum, Curriculum Delivery and General Teaching Methods|2|C|200|1
+EDT 201|Communication and Media Technology|2|C|200|1
+FUTM-EDT 213|Basic Production Techniques for Inexpensive Learning and Instructional Materials|3|C|200|1
+FUTM-EDT 211|Digital Image Processing|3|C|200|1
+FUTM-EDT 212|Introduction to Assistive Technology|2|C|200|1
+EDT 202|Educational Technology in Schools and Workplaces|2|C|200|2
+EDT 203|Instructional System Design|2|C|200|2
+EDT 204|Edutainment, Gamification, and Game Based Learning|2|C|200|2
+FUTM-EDT 221|Educational Broadcasting|2|C|200|2
+FUTM-EDT 222|Social Media in Education|2|C|200|2
+FUTM-EDT 223|Innovative Pedagogies|2|C|200|2
+FUTM-EDT 224|Application of Educational Technology|2|C|200|2
+FUTM-EDT 225|Computer Simulation and Modelling|3|C|200|2
+GST 312|Peace and Conflict Resolution|2|C|300|1
+EDT 302|Evaluation in Educational Technology|2|C|300|1
+FUTM-CPT 314|Computer Communication and Network|3|C|300|1
+FUTM-EDT 312|Fundamental of Curriculum Development and Evaluation in Educational Technology|2|C|300|1
+FUTM-EDT 313|Basics of Evaluation of Educational Technology Media|2|C|300|1
+FUTM-EDT 311|Career in Educational Technology|3|C|300|1
+FUTM-EDT 315|Radio and Television Production Techniques|2|C|300|1
+EDU 302|Educational Measurements, Tests, Research Methods, and Statistics|3|C|300|2
+EDT 303|Inclusive Technology for Learning (Adaptive and Assistive Technology)|2|C|300|2
+EDT 304|Distance Learning: Concepts, Models, and Technologies|2|C|300|2
+ENT 312|Venture Creation|2|C|300|2
+EDT 301|Globalization of Instructional Resources|2|C|300|2
+EDT 305|E-Learning|2|C|300|2
+EDT 306|Learning Management System|2|C|300|2
+EDT 401|Learning Analytics|2|C|400|1
+FUTM-CPT 412|Software Engineering|3|C|400|1
+FUTM-CPT 413|Internet Programming|3|C|400|1
+FUTM-EDT 414|Computer Graphics|2|C|400|1
+FUTM-EDT 415|Introduction to Seminar|3|C|400|1
+FUTM-EDT 410|Introduction to Instructional System Design|3|C|400|1
+FUTM-EDT 400|SIWES/Teaching Practice I and II|9|C|400|2
+EDT 503|Emerging Technology and Education|2|C|500|1
+EDT 504|Safety and Cybernetics in Educational Technology|2|C|500|1
+EDT 502|Management of Educational Technology Resources|2|C|500|1
+EDT 505|Educational Computing|2|C|500|1
+FUTM-EDT 511|Research Methodology in Educational Technology|2|C|500|1
+FUTM-EDT 512|Introduction to Statistics in Educational Technology Research|3|C|500|1
+FUTM-CPT 513|Operating System|3|C|500|1
+EDU 500|Project|6|C|500|2
+FUTM-EDT 321|Internship and Externship in Educational Technology|3|C|500|2
+FUTM-EDT 322|Production and Exhibition of Educational Technology Products|3|C|500|2
+FUTM-EDT 523|Script Writing|2|C|500|2
+FUTM-EDT 524|Statistics and Data Processing in Educational Technology|2|C|500|2

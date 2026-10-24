@@ -1,5 +1,5 @@
 // Only static assets and the generic offline shell are persisted. Never store member HTML.
-const VERSION = 'v2';
+const VERSION = 'v3';
 const STATIC = `tlv-static-${VERSION}`;
 const PRECACHE = ['/offline', '/manifest.json', '/icons/icon-192.png', '/icons/icon-512.png'];
 

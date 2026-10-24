@@ -17,7 +17,7 @@ export default async function EditPrayer({ params }) {
   return (
     <div className="grid gap-6">
       <Link href="/admin/prayer-points" className="text-sm font-medium underline underline-offset-4">← Prayer points</Link>
-      <div className="flex items-center gap-3"><h1 className="text-2xl font-bold tracking-tight">Edit prayer points</h1><StatusChip status={item.status} /></div>
+      <div className="flex items-center gap-3"><h1 className="display text-[2.25rem] leading-[1.08]">Edit prayer points</h1><StatusChip status={item.status} /></div>
       <RefreshingForm action={setPrayerStatus} className="flex gap-2">
         <input type="hidden" name="id" value={item.id} />
         {item.status !== 'archived'

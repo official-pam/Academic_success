@@ -18,7 +18,7 @@ export default async function AdminPrayer({ searchParams }) {
   return (
     <div className="grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <h1 className="text-2xl font-bold tracking-tight">Prayer points</h1>
+        <h1 className="display text-[2.25rem] leading-[1.08]">Prayer points</h1>
         <Link href="/admin/prayer-points/new" className="btn btn-primary">New week</Link>
       </div>
       {sp.saved && <p role="status" className="rounded-md bg-sage-wash px-3 py-2 text-sm text-sage-ink">Saved.</p>}

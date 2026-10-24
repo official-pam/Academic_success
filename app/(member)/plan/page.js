@@ -36,7 +36,7 @@ export default async function PlanPage({ searchParams }) {
     <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_18rem]">
       <div className="grid content-start gap-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <h1 className="text-2xl font-bold tracking-tight">Plan</h1>
+          <h1 className="display text-[2.25rem] leading-[1.08]">Plan</h1>
           <nav aria-label="Plan view" className="flex rounded-md bg-stone/60 p-1 text-sm">
             <Link href="/plan" aria-current={!isMonth ? 'page' : undefined} className={`rounded px-3 py-1.5 ${!isMonth ? 'bg-surface font-bold' : 'text-muted'}`}>Agenda</Link>
             <Link href="/plan?view=month" aria-current={isMonth ? 'page' : undefined} className={`rounded px-3 py-1.5 ${isMonth ? 'bg-surface font-bold' : 'text-muted'}`}>Month</Link>
@@ -56,7 +56,7 @@ export default async function PlanPage({ searchParams }) {
       </div>
 
       <aside className="grid content-start gap-10">
-        <section id="goal" aria-labelledby="goal-heading" className="scroll-mt-6">
+        <section id="goal" aria-labelledby="goal-heading" className="panel scroll-mt-6 p-5">
           <h2 id="goal-heading" className="text-base font-bold">Reading goal</h2>
           {goal && (
             <p className="mt-2 text-base">
@@ -78,7 +78,7 @@ export default async function PlanPage({ searchParams }) {
             </details>
           )}
         </section>
-        <section id="add" aria-labelledby="add-heading" className="scroll-mt-6">
+        <section id="add" aria-labelledby="add-heading" className="panel scroll-mt-6 p-5">
           <h2 id="add-heading" className="text-base font-bold">Add to your plan</h2>
           <div className="mt-4"><AddSessionForm today={today} /></div>
         </section>
@@ -128,23 +128,23 @@ function Agenda({ today, sessions, assignments }) {
 
 function AgendaGroup({ title, note, items, empty, today }) {
   return (
-    <section aria-label={title}>
+    <section aria-label={title} className="panel p-4">
       <h2 className="text-base font-bold">{title} <span className="num font-medium text-muted">{items.length || ''}</span></h2>
       {note && <p className="mt-1 text-sm text-muted">{note}</p>}
-      {items.length ? <AgendaList items={items} today={today} /> : <p className="mt-2 border-y border-rule py-3 text-sm text-muted">{empty}</p>}
+      {items.length ? <AgendaList items={items} today={today} /> : <p className="mt-2 text-sm text-muted">{empty}</p>}
     </section>
   );
 }
 
 function AgendaList({ items, today }) {
   return (
-    <ul className="mt-2 divide-y divide-rule border-y border-rule">
+    <ul className="mt-2 divide-y divide-rule">
       {items.map((item) => item.type === 'assignment' ? (
         <li key={`a-${item.id}`} className="flex gap-4 py-3">
           <When day={item.day} today={today} time={formatDateTime(item.due_at, { hour: 'numeric', minute: '2-digit' })} />
           <div className="min-w-0 flex-1">
             <Link href={`/assignments/${item.id}`} className="font-semibold hover:underline">{item.title}</Link>
-            <p className="text-sm text-clay-ink">Committee deadline · due {relativeDue(item.due_at)}</p>
+            <p className="text-sm text-rose-ink">Committee deadline · due {relativeDue(item.due_at)}</p>
           </div>
         </li>
       ) : (
@@ -171,7 +171,7 @@ function SessionRow({ s, today }) {
       <div className="min-w-0 flex-1">
         <p className={`font-semibold ${s.done_at ? 'text-muted line-through' : ''}`}>{s.title}</p>
         <p className="text-sm text-muted">
-          <span className={state === 'Missed' ? 'font-semibold text-danger' : state === 'Exam' ? 'font-semibold text-clay-ink' : ''}>{state}</span>
+          <span className={state === 'Missed' ? 'font-semibold text-danger' : state === 'Exam' ? 'font-semibold text-rose-ink' : ''}>{state}</span>
           {s.duration_min ? ` · ${s.duration_min} min` : ''}
         </p>
         <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -239,7 +239,7 @@ function MonthView({ monthStart, today, sessions, assignments }) {
                     <span aria-hidden="true" className="mt-1 flex flex-wrap gap-0.5">
                       {Array.from({ length: Math.min(reading, 3) }, (_, k) => <span key={`r${k}`} className="size-2 rounded-full bg-sage" />)}
                       {Array.from({ length: Math.min(exams, 2) }, (_, k) => <span key={`e${k}`} className="size-2 rotate-45 bg-ink" />)}
-                      {Array.from({ length: Math.min(a.length, 2) }, (_, k) => <span key={`a${k}`} className="h-2 w-3 bg-clay" />)}
+                      {Array.from({ length: Math.min(a.length, 2) }, (_, k) => <span key={`a${k}`} className="h-2 w-3 bg-rose" />)}
                     </span>
                   </td>
                 );
@@ -251,7 +251,7 @@ function MonthView({ monthStart, today, sessions, assignments }) {
       <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted" aria-label="Key">
         <li className="flex items-center gap-1.5"><span className="size-2 rounded-full bg-sage" aria-hidden="true" />Reading session</li>
         <li className="flex items-center gap-1.5"><span className="size-2 rotate-45 bg-ink" aria-hidden="true" />Exam</li>
-        <li className="flex items-center gap-1.5"><span className="h-2 w-3 bg-clay" aria-hidden="true" />Committee deadline</li>
+        <li className="flex items-center gap-1.5"><span className="h-2 w-3 bg-rose" aria-hidden="true" />Committee deadline</li>
       </ul>
     </section>
   );

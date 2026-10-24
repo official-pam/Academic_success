@@ -7,7 +7,7 @@ export default async function NewAnnouncement() {
   return (
     <div className="grid gap-6">
       <Link href="/admin/announcements" className="text-sm font-medium underline underline-offset-4">← Announcements</Link>
-      <h1 className="text-2xl font-bold tracking-tight">New announcement</h1>
+      <h1 className="display text-[2.25rem] leading-[1.08]">New announcement</h1>
       <AnnouncementForm profile={profile} />
     </div>
   );

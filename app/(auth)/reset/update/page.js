@@ -7,7 +7,7 @@ export default function UpdatePasswordPage() {
   const [state, action] = useActionState(updatePassword, null);
   return (
     <>
-      <h1 className="text-2xl font-bold tracking-tight">Choose a new password</h1>
+      <h1 className="display text-[2.25rem] leading-[1.08]">Choose a new password</h1>
       <form action={action} className="mt-8 grid gap-5" noValidate>
         <div className="field">
           <label htmlFor="password" className="label">New password</label>

@@ -23,7 +23,7 @@ export function OnboardingForm({ defaults }) {
           {[3, 5, 7].map((d) => (
             <label key={d} className="relative">
               <input type="radio" name="days_per_week" value={d} defaultChecked={(v.days_per_week || 5) === d} className="peer sr-only" />
-              <span className="flex min-h-11 cursor-pointer items-center justify-center rounded-md border border-stone bg-surface text-sm font-semibold peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-ink">
+              <span className="flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-stone bg-surface text-sm font-semibold peer-checked:border-lavender-strong peer-checked:bg-lavender-strong peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-ink">
                 {d} days
               </span>
             </label>

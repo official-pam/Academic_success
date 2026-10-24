@@ -61,7 +61,7 @@ export function AddSessionForm({ today }) {
           {[['reading', 'Reading session'], ['exam', 'Exam']].map(([val, label]) => (
             <label key={val} className="relative">
               <input type="radio" name="kind" value={val} defaultChecked={(v.kind || 'reading') === val} className="peer sr-only" />
-              <span className="flex min-h-11 cursor-pointer items-center justify-center rounded-md border border-stone bg-surface text-sm font-semibold peer-checked:border-ink peer-checked:bg-ink peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-ink">{label}</span>
+              <span className="flex min-h-11 cursor-pointer items-center justify-center rounded-full border border-stone bg-surface text-sm font-semibold peer-checked:border-lavender-strong peer-checked:bg-lavender-strong peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-ink">{label}</span>
             </label>
           ))}
         </div>

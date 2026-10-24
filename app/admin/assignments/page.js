@@ -26,7 +26,7 @@ export default async function AdminAssignments({ searchParams }) {
     <div className="grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Assignments</h1>
+          <h1 className="display text-[2.25rem] leading-[1.08]">Assignments</h1>
           <p className="mt-1 text-sm text-muted">{profile.role === 'coordinator' ? `Reading tasks for ${levelLabel(profile.coordinator_level)}` : 'Reading tasks for every level'}</p>
         </div>
         <Link href="/admin/assignments/new" className="btn btn-primary">New assignment</Link>

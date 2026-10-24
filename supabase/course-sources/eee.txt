@@ -1,0 +1,88 @@
+# SEET | Electrical and Electronics Engineering | https://www.dropbox.com/scl/fi/fvo9m1udnatzbmv1j5eku/Departmental-HandBook-2024-2028_CCMAS.pdf?rlkey=ygnhx65m2pfaz5onqjo20m39a&dl=0 | Department of Electrical & Electronics Engineering Undergraduate Students' Handbook 2024-2028 (CCMAS), course structure 5.1 (pp. 17-20); linked from futminna.edu.ng/seet/eee/
+GST 111|Communication in English|2|C|100|1
+GET 102|Engineering Graphics and Solid Modelling I|2|C|100|1
+GET 101|Engineer in Society|1|C|100|1
+CHM 101|General Chemistry I|2|C|100|1
+CHM 107|General Practical Chemistry I|1|C|100|1
+MTH 101|Elementary Mathematics I|3|C|100|1
+PHY 101|General Physics I|2|C|100|1
+PHY 107|General Practical Physics I|1|C|100|1
+EEE 102|Introduction to Electrical and Electronics Engineering|2|C|100|1
+FUTM-MTH 113|Elementary Mathematics III (Vectors, Geometry and Dynamics)|2|C|100|1
+FUTM-EET 111|Computer Programming (C++ and Python)|2|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|2
+MTH 102|Elementary Mathematics II|3|C|100|2
+PHY 102|General Physics II|2|C|100|2
+PHY 108|General Practical Physics II|1|E|100|2
+CHM 102|General Chemistry II|3|C|100|2
+CHM 108|General Practical Chemistry II|1|C|100|2
+FUTM-PHY 122|General Physics III (Electricity and Magnetism)|2|C|100|2
+FUTM-PHY 124|General Physics IV (Vibration, Waves and Optics)|2|C|100|2
+FUTM-STA 122|Probability I|2|C|100|2
+ENT 211|Entrepreneurship and Innovation|2|C|200|1
+GET 201|Applied Electricity I|3|C|200|1
+GET 203|Engineering Graphics and Solid Modelling II|2|C|200|1
+GET 205|Fundamentals of Fluid Mechanics|3|C|200|1
+GET 207|Applied Mechanics|3|C|200|1
+GET 209|Engineering Mathematics I|3|C|200|1
+GET 211|Computing and Software Engineering|3|C|200|1
+FUTM-EET 211|Introduction to Sensors and Applications|2|C|200|1
+GST 212|Philosophy, Logic and Human Existence|2|C|200|2
+GET 204|Students Workshop Practice|2|C|200|2
+GET 206|Fundamentals of Thermodynamics|3|C|200|2
+GET 210|Engineering Mathematics II|3|C|200|2
+EEE 202|Applied Electricity II|3|C|200|2
+EEE 204|Electrical Engineering Materials|3|C|200|2
+FUTM-GET 228|Strength of Materials|3|C|200|2
+FUTM-EET 222|Introduction to Internet of Things|2|C|200|2
+GET 299|SIWES I (credited to 400 Level second semester)|3|C|200|2
+GET 301|Engineering Mathematics III|3|C|300|1
+GET 305|Engineering Analytics and Data Statistics|3|C|300|1
+GET 307|Introduction to Artificial Intelligence, Machine Learning and Convergent Technologies|3|C|300|1
+EEE 311|Electric Circuit Theory I|2|C|300|1
+EEE 321|Analogue Electronic Circuits I|2|C|300|1
+FUTM-GET 311|Engineering Economics|3|C|300|1
+FUTM-EEE 313|Electrical Machines|2|C|300|1
+FUTM-EEE 315|Signals and Systems|2|C|300|1
+GST 312|Peace and Conflict Resolution|2|C|300|2
+ENT 312|Venture Creation|2|C|300|2
+GET 302|Engineering Mathematics IV|3|C|300|2
+GET 304|Technical Writing and Communication|3|C|300|2
+GET 306|Renewable Energy Systems and Technologies|3|C|300|2
+EEE 322|Digital Electronic Circuits|2|C|300|2
+EEE 324|Electromagnetic Fields and Waves I|2|C|300|2
+EEE 326|Electric Circuit Theory II|2|E|300|2
+GET 399|SIWES II (credited to 400 Level second semester)|4|C|300|2
+GET 404|Engineering Valuation and Costing|2|C|400|1
+FUTM-EET 411|Research Methodology|2|C|400|1
+FUTM-EET 412|MATLAB for Electrical Engineers|2|C|400|1
+FUTM-EEE 401|Control Engineering|2|C|400|1
+FUTM-EEE 402|Power Electronics|2|C|400|1
+FUTM-EEE 409|Electromagnetic Field and Waves II|2|C|400|1
+FUTM-EEE 411|Measurements and Instrumentations|2|C|400|1
+FUTM-EEE 412|Electrical Energy Systems|2|C|400|1
+FUTM-EEE 410|Digital Electronics II|2|E|400|1
+FUTM-EEE 403|Advanced Renewable Energy Systems|2|E|400|1
+FUTM-EEE 413|Electric Vehicles Fundamentals|2|E|400|1
+GET 402|Engineering Project I|2|C|400|2
+GET 499|SIWES III|8|C|400|2
+GET 501|Engineering Project Management|3|C|500|1
+FUTM-GET 511|Engineering Management|2|C|500|1
+FUTM-EEE 501|Electrical Services Design|2|C|500|1
+FUTM-EEE 505|Digital Signal Processing and Application|2|C|500|1
+FUTM-EEE 509|Advanced Electronic Circuits Design|3|C|500|1
+FUTM-EEE 511|Reliability Engineering|2|C|500|1
+FUTM-EEE 503|Energy Economy|2|E|500|1
+FUTM-EEE 507|AI in Engineering Application|2|E|500|1
+FUTM-EEE 513|Power System Planning and Protection|2|E|500|1
+FUTM-EEE 512|Introduction to Aviation Electronics and Aircraft Navigation System|2|E|500|1
+GET 502|Engineering Law|2|C|500|2
+EEE 593|Final Year Project I|3|C|500|2
+EEE 594|Final Year Project II|3|C|500|2
+FUTM-EEE 522|Electrical Power Systems Engineering|2|C|500|2
+FUTM-EEE 524|Industrial Electronics Design|2|C|500|2
+FUTM-EEE 528|Solid State Electronics|2|C|500|2
+FUTM-EEE 520|Control Engineering II|2|C|500|2
+FUTM-EEE 526|Embedded Systems Design and Programming|2|E|500|2
+FUTM-EEE 542|High Voltage Direct Current Transmission Systems|2|E|500|2
+FUTM-EEE 514|Antenna and Waves Propagation|2|C|500|2

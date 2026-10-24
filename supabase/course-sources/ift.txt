@@ -1,0 +1,61 @@
+# SICT | Information Technology | https://futminna.edu.ng/sict/wp-content/uploads/sites/5/2026/04/IFT-CCMAS-STUDENTS-HANDBOOK-21_26.docx | Department of Information Technology CCMAS Students' Handbook (2021-2026), course structure tables
+GST 111|Communication in English|2|C|100|1
+MTH 101|Elementary Mathematics I|3|C|100|1
+PHY 101|General Physics I|2|C|100|1
+PHY 107|General Practical Physics I|1|C|100|1
+STA 111|Descriptive Statistics|3|C|100|1
+COS 101|Introduction to Computing Sciences|3|C|100|1
+FUTM-IFT 111|Introduction to Computer Systems|3|C|100|1
+GST 112|Nigerian Peoples and Culture|2|C|100|2
+MTH 102|Elementary Mathematics II|3|C|100|2
+PHY 102|General Physics II|2|C|100|2
+PHY 108|General Practical Physics II|1|C|100|2
+COS 102|Introduction to Problem Solving|3|C|100|2
+FUTM-IFT 121|Introduction to Programming|3|C|100|2
+FUTM-IFT 122|Introduction to Basic Database Concepts|3|C|100|2
+ENT 211|Entrepreneurship and Innovation|2|C|200|1
+COS 201|Computer Programming I|3|C|200|1
+IFT 203|Introduction to Web Technologies|2|C|200|1
+IFT 205|Introduction to Information Technology|2|C|200|1
+IFT 211|Digital Logic Design|2|C|200|1
+INS 202|Human-Computer Interface|2|C|200|1
+FUTM-IFT 211|Software Engineering Foundation for IT|3|C|200|1
+GST 212|Philosophy, Logic and Human Existence|2|C|200|2
+COS 202|Computer Programming II|3|C|200|2
+IFT 212|Computer Architecture and Organisation|2|C|200|2
+FUTM-IFT 222|Information Security Fundamentals|3|C|200|2
+FUTM-IFT 223|Health Information Technology Fundamentals|3|E|200|2
+FUTM-IFT 224|Emerging Technologies in Practice|3|C|200|2
+GST 312|Peace and Conflict Resolution|2|C|300|1
+ENT 312|Venture Creation|2|C|300|1
+IFT 310|Mobile Application Development|2|C|300|1
+IFT 308|Ethics and Legal Issues in IT|2|C|300|1
+FUTM-IFT 311|Web Server Administration|3|C|300|1
+FUTM-IFT 312|Database Fundamentals|3|C|300|1
+FUTM-IFT 313|Cloud Computing|3|C|300|1
+IFT 302|Web Application Development|2|C|300|2
+IFT 304|Web Development using Content Management Systems|2|C|300|2
+IFT 322|IT Innovation and Entrepreneurship|2|C|300|2
+IFT 342|Network Servers and Infrastructures|2|C|300|2
+CSC 308|Operating Systems|3|C|300|2
+ICT 305|Data Communications Systems and Network|3|C|300|2
+FUTM-IFT 321|Data Mining and Visualization|3|C|300|2
+COS 409|Research Methodology and Technical Report Writing|3|C|400|1
+IFT 403|Mobile and Pervasive Computing|2|C|400|1
+IFT 410|System Integration and Architecture|2|C|400|1
+IFT 442|Wireless Communications and Networking|2|C|400|1
+INS 401|Project Management|2|C|400|1
+FUTM-IFT 411|Fundamentals of Artificial Intelligence and Data Analytics|3|C|400|1
+FUTM-IFT 412|Rapid Development of Scalable Cloud Applications|3|C|400|1
+IFT 499|SIWES I and II|6||400|2
+FUTM-IFT 511|Business Continuity and Disaster Recovery for Information Security|3|C|500|1
+FUTM-IFT 512|Business Intelligence|3|C|500|1
+FUTM-IFT 513|Artificial Intelligence|3|C|500|1
+FUTM-IFT 514|Communication for IT Professionals|3|C|500|1
+FUTM-IFT 515|Applied Cyber Threat Analysis|3|C|500|1
+FUTM-IFT 522|Technopreneurship|3|C|500|2
+FUTM-IFT 524|Systems Testing and Quality Management|3|C|500|2
+FUTM-IFT 525|Business Process and IT Strategy|3|C|500|2
+IFT 598|Final Year Project I and II|6||500|2
+FUTM-IFT 521|Advanced Web Development with Big Data|3|E|500|2
+FUTM-IFT 523|Applied Artificial Intelligence|3|E|500|2
