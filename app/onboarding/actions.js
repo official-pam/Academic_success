@@ -2,6 +2,7 @@
 import { redirect } from 'next/navigation';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { LEVELS } from '@/lib/constants';
+import { resolveProgramme } from '@/lib/catalogue';
 
 function failure(stage, error, values) {
   // Log only the operation and error code; never profile data, tokens, or raw messages.
@@ -13,13 +14,15 @@ function failure(stage, error, values) {
 export async function completeOnboarding(_prev, formData) {
   const full_name = String(formData.get('full_name') || '').trim().replace(/\s+/g, ' ');
   const level = Number(formData.get('level'));
-  const department = String(formData.get('department') || '').trim().replace(/\s+/g, ' ');
+  const school_code = String(formData.get('school_code') || '');
+  const programme_id = String(formData.get('programme_id') || '');
   const days = Number(formData.get('days_per_week'));
-  const values = { full_name, level, department, days_per_week: days };
+  const values = { full_name, level, school_code, programme_id, days_per_week: days };
   const errors = {};
   if (full_name.length < 2 || full_name.length > 80) errors.full_name = 'Enter your name.';
   if (!LEVELS.includes(level)) errors.level = 'Choose your level.';
-  if (department.length < 2 || department.length > 80) errors.department = 'Enter your department, for example "Computer Science".';
+  if (!school_code) errors.school_code = 'Choose your school.';
+  if (!programme_id) errors.programme_id = 'Choose your department or programme.';
   if (!Number.isInteger(days) || !(days >= 1 && days <= 7)) errors.days_per_week = 'Choose how many days a week you\'ll read.';
   if (Object.keys(errors).length) return { errors, values };
 
@@ -27,9 +30,12 @@ export async function completeOnboarding(_prev, formData) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/sign-in');
 
+  const programme = await resolveProgramme(supabase, school_code, programme_id);
+  if (!programme) return { errors: { programme_id: 'Choose a programme from your school\'s list.' }, values };
+
   const { data: profile, error } = await supabase
     .from('profiles')
-    .update({ full_name, level, department })
+    .update({ full_name, level, school_code, programme_id: programme.id, department: programme.name.slice(0, 80) })
     .eq('id', user.id)
     .select('id')
     .maybeSingle();

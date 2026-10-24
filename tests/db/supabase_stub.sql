@@ -21,3 +21,7 @@ create or replace function auth.uid() returns uuid language sql stable as $$
                          (nullif(current_setting('request.jwt.claims', true), '')::jsonb ->> 'sub')), '')::uuid
 $$;
 grant execute on function auth.uid() to anon, authenticated, service_role;
+-- Real Supabase gives service_role full access to public tables (RLS is bypassed); mirror that for tests.
+alter default privileges in schema public grant all on tables to service_role;
+alter default privileges in schema public grant all on sequences to service_role;
+alter default privileges in schema public grant execute on functions to service_role;

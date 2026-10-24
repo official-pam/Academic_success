@@ -1,9 +1,9 @@
 'use client';
-import { useActionState, useMemo } from 'react';
+import { useActionState, useMemo, useState } from 'react';
 import { saveAnnouncement } from '@/app/admin/announcements/actions';
 import { savePrayerPoints } from '@/app/admin/prayer-points/actions';
 import { SubmitButton, FormMessage, FieldError, invalid } from '@/components/forms';
-import { LEVELS, levelLabel } from '@/lib/constants';
+import { AudienceFields } from '@/components/admin/AudienceFields';
 
 function useClientKey() {
   return useMemo(() => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : ''), []);
@@ -21,11 +21,14 @@ function Actions({ state, published }) {
   );
 }
 
-export function AnnouncementForm({ item, profile }) {
+export function AnnouncementForm({ item, profile, schools = [] }) {
   const [state, action] = useActionState(saveAnnouncement, null);
   const key = useClientKey();
-  const v = state?.values || { title: item?.title || '', body: item?.body || '', level: item ? String(item.level ?? 'all') : 'all', pinned: item?.pinned || false };
-  const coordinator = profile.role === 'coordinator';
+  const v = state?.values || { title: item?.title || '', body: item?.body || '', pinned: item?.pinned || false };
+  const [aud, setAud] = useState({
+    level: item ? String(item.level ?? 'all') : 'all',
+    school_code: item ? String(item.school_code ?? 'all') : 'all',
+  });
   return (
     <form action={action} className="grid max-w-2xl gap-5" noValidate>
       <input type="hidden" name="id" value={item?.id || ''} />
@@ -41,21 +44,10 @@ export function AnnouncementForm({ item, profile }) {
         <p className="hint">Leave a blank line between paragraphs. Links work. Never include anyone's grades or private details.</p>
         <FieldError state={state} name="body" />
       </div>
-      <div className="grid gap-3 sm:grid-cols-2">
-        <div className="field">
-          <label htmlFor="level" className="label">Who sees it</label>
-          {coordinator ? (
-            <><input type="hidden" name="level" value={profile.coordinator_level} /><p id="level" className="input flex items-center bg-paper">{levelLabel(profile.coordinator_level)}</p></>
-          ) : (
-            <select id="level" name="level" defaultValue={v.level} className="input">
-              <option value="all">All levels</option>
-              {LEVELS.map((l) => <option key={l} value={l}>{l}L</option>)}
-            </select>
-          )}
-          <FieldError state={state} name="level" />
-        </div>
-        <label className="flex min-h-11 items-center gap-3 self-end text-sm font-semibold">
-          <input type="checkbox" name="pinned" defaultChecked={v.pinned} className="size-5 accent-[#20221f]" />
+      <AudienceFields profile={profile} schools={schools} state={state} value={aud} onChange={(k, val) => setAud((x) => ({ ...x, [k]: val }))} />
+      <div>
+        <label className="flex min-h-11 items-center gap-3 text-sm font-semibold">
+          <input type="checkbox" name="pinned" defaultChecked={v.pinned} className="size-5 accent-[var(--color-ink)]" />
           Pin to the top of Updates
         </label>
       </div>

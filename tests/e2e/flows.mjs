@@ -35,7 +35,10 @@ async function newUser(name, mail, level, dept, ctxOpts = phone) {
   await page.getByRole('button', { name: 'Create account' }).click();
   await page.waitForURL('**/onboarding'); await hydrated(page);
   await page.locator(`text=${level}L`).first().click();
-  await page.getByLabel('Department').fill(dept);
+  // School and programme are dropdowns from the FUT Minna catalogue now.
+  const school = sql(`select school_code from public.programmes where name = '${dept.replace(/'/g, "''")}' limit 1`);
+  await page.getByLabel('School').selectOption(school);
+  await page.getByLabel('Department / programme').selectOption({ label: dept });
   await page.getByRole('button', { name: 'Start reading' }).click();
   await page.waitForURL('**/today**'); await hydrated(page);
   return { ctx, page };
@@ -132,9 +135,11 @@ try {
   const coord = await newUser('Kemi Coordinator', email('kemi'), 200, 'Biochemistry');
   p = chair.page;
   await p.goto(`${BASE}/admin/people?q=Kemi`); await hydrated(p);
-  await p.getByLabel('Role for Kemi Coordinator').selectOption('coordinator:200');
+  await p.getByLabel('Role for Kemi Coordinator').selectOption('coordinator');
+  await p.getByLabel('School Kemi Coordinator looks after').selectOption('SLS');
+  await p.getByLabel('Level Kemi Coordinator looks after').selectOption('200');
   await p.getByRole('button', { name: 'Save' }).first().click();
-  await p.getByText('Role updated.').waitFor();
+  await p.getByText('Saved.').waitFor();
   ok(sql(`select role || ':' || coordinator_level from public.profiles p join auth.users u on u.id = p.id where u.email = '${email('kemi')}'`) === 'coordinator:200', 'chairman appoints a 200L coordinator');
   await p.goto(`${BASE}/admin/people`); await hydrated(p);
   await shot(p, '07-admin-people-desktop');

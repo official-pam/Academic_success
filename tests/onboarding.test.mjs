@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 const source = readFileSync(new URL('../app/onboarding/actions.js', import.meta.url), 'utf8').replace(/^import .*;\r?\n/gm, '').replace('export async function', 'async function');
-function setup({ profileError = null, missing = false, goalError = null, rpcError = null, count = 0, user = { id: 'member' } } = {}) {
+function setup({ profileError = null, missing = false, goalError = null, rpcError = null, count = 0, user = { id: 'member' }, programme = { id: 7, school_code: 'SEET', name: 'Electrical and Electronics Engineering' } } = {}) {
   const updates = [], logs = [];
   let rpcCalls = 0;
   const client = {
@@ -18,10 +18,11 @@ function setup({ profileError = null, missing = false, goalError = null, rpcErro
     rpc: async () => { rpcCalls++; return { error: rpcError }; },
   };
   const c = vm.createContext({ LEVELS: [100,200,300,400,500], getServerSupabase: async () => client,
+    resolveProgramme: async (_client, school, id) => (programme && school === programme.school_code && Number(id) === programme.id ? programme : null),
     redirect: (url) => { throw new Error(`REDIRECT:${url}`); }, console: { error: (...args) => logs.push(args) } });
   vm.runInContext(source, c);
   const form = new FormData();
-  for (const [k,v] of Object.entries({ full_name: 'Test Member', level: '100', department: 'Music', days_per_week: '5' })) form.set(k,v);
+  for (const [k,v] of Object.entries({ full_name: 'Test Member', level: '100', school_code: 'SEET', programme_id: '7', days_per_week: '5' })) form.set(k,v);
   return { run: () => c.completeOnboarding(null, form), updates, logs, rpcCalls: () => rpcCalls };
 }
 test('profile permission errors are observable without leaking personal details', async () => {
@@ -61,4 +62,19 @@ test('signed-out callers are redirected before any write', async () => {
   const s = setup({ user: null });
   await assert.rejects(s.run(), /REDIRECT:\/sign-in/);
   assert.equal(s.updates.length, 0);
+});
+
+test('the programme must come from the chosen school in the catalogue', async () => {
+  const s = setup({ programme: null });
+  const result = await s.run();
+  assert.ok(result.errors.programme_id);
+  assert.equal(s.updates.length, 0);
+});
+
+test('the department shown is the catalogue programme name', async () => {
+  const s = setup();
+  await assert.rejects(s.run(), /REDIRECT:/);
+  assert.equal(s.updates[0].school_code, 'SEET');
+  assert.equal(s.updates[0].programme_id, 7);
+  assert.equal(s.updates[0].department, 'Electrical and Electronics Engineering');
 });

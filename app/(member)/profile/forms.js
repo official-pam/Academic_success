@@ -4,10 +4,10 @@ import { useActionState } from 'react';
 import { updateProfile, deleteAccount } from './actions';
 import { signOut } from '@/app/(auth)/actions';
 import { SubmitButton, FormMessage, FieldError, invalid } from '@/components/forms';
-import { LevelPicker, DepartmentInput } from '@/components/ProfileFields';
+import { LevelPicker, SchoolProgrammePicker } from '@/components/ProfileFields';
 import { clearPageCache } from '@/components/ServiceWorker';
 
-export function ProfileForm({ profile }) {
+export function ProfileForm({ profile, schools, programmes }) {
   const [state, action] = useActionState(updateProfile, null);
   useRefreshOnSuccess(state);
   return (
@@ -18,7 +18,7 @@ export function ProfileForm({ profile }) {
         <FieldError state={state} name="full_name" />
       </div>
       <LevelPicker state={state} defaultValue={profile.level} />
-      <DepartmentInput state={state} defaultValue={profile.department} />
+      <SchoolProgrammePicker state={state} schools={schools} programmes={programmes} defaultSchool={profile.school_code} defaultProgramme={profile.programme_id} />
       <FormMessage state={state} />
       <SubmitButton className="btn btn-primary justify-self-start">Save changes</SubmitButton>
     </form>

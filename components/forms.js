@@ -2,11 +2,11 @@
 import { useFormStatus } from 'react-dom';
 import { useHydrated } from '@/components/useHydrated';
 
-export function SubmitButton({ children, pendingLabel = 'Saving…', className = 'btn btn-primary', name, value, ...rest }) {
+export function SubmitButton({ children, pendingLabel = 'Saving…', className = 'btn btn-primary', name, value, disabled: blocked = false, ...rest }) {
   const { pending } = useFormStatus();
   // Until the page is interactive a tap would bypass validation messages, so wait for hydration.
   const ready = useHydrated();
-  const disabled = pending || !ready;
+  const disabled = pending || !ready || blocked;
   return (
     <button
       type="submit"

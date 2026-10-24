@@ -1,5 +1,7 @@
 # TLV Academic — Season of Restored Glory
 
+**Latest changes and deploy steps: [docs/update-2026-10-24.md](docs/update-2026-10-24.md).**
+
 Installable PWA for the TLV choir's Academic Committee. Members (100L–500L) record daily reading in one tap, plan their semester, read prayer points, assignments and announcements. Coordinators and the chairman publish content and see **aggregate** participation only.
 
 Stack: Next.js 15 (App Router, JS) · Tailwind 4 · Supabase (Postgres, Auth, RLS) · Vercel.

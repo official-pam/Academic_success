@@ -1,4 +1,5 @@
 'use client';
+import { useMemo, useState } from 'react';
 import { FieldError, invalid } from '@/components/forms';
 import { LEVELS } from '@/lib/constants';
 
@@ -21,21 +22,49 @@ export function LevelPicker({ state, defaultValue, name = 'level', legend = 'Lev
   );
 }
 
-// Suggestions only; members can type any department.
-const DEPARTMENTS = [
-  'Agricultural Economics', 'Architecture', 'Biochemistry', 'Chemistry', 'Chemical Engineering', 'Civil Engineering',
-  'Computer Engineering', 'Computer Science', 'Cyber Security', 'Electrical Engineering', 'Estate Management',
-  'Geology', 'Industrial Chemistry', 'Information Technology', 'Mathematics', 'Mechanical Engineering',
-  'Microbiology', 'Physics', 'Quantity Surveying', 'Statistics', 'Urban and Regional Planning',
-];
-
-export function DepartmentInput({ state, defaultValue }) {
+/*
+  School, then programme (department), both chosen from the FUT Minna catalogue, so nobody types them.
+  The programme list only shows the chosen school's programmes.
+*/
+export function SchoolProgrammePicker({ state, schools, programmes, defaultSchool, defaultProgramme }) {
+  const [school, setSchool] = useState(defaultSchool || '');
+  const [programme, setProgramme] = useState(defaultProgramme ? String(defaultProgramme) : '');
+  const options = useMemo(() => programmes.filter((p) => p.school_code === school), [programmes, school]);
   return (
-    <div className="field">
-      <label htmlFor="department" className="label">Department</label>
-      <input id="department" name="department" list="departments" autoComplete="off" className="input" defaultValue={defaultValue} {...invalid(state, 'department')} />
-      <datalist id="departments">{DEPARTMENTS.map((d) => <option key={d} value={d} />)}</datalist>
-      <FieldError state={state} name="department" />
+    <div className="grid gap-5">
+      <div className="field">
+        <label htmlFor="school_code" className="label">School</label>
+        <select
+          id="school_code"
+          name="school_code"
+          className="input"
+          value={school}
+          onChange={(e) => { setSchool(e.target.value); setProgramme(''); }}
+          {...invalid(state, 'school_code')}
+        >
+          <option value="" disabled>Choose your school</option>
+          {schools.map((s) => (
+            <option key={s.code} value={s.code}>{s.code} · {s.name.replace(/\s*\(.*\)$/, '')}</option>
+          ))}
+        </select>
+        <FieldError state={state} name="school_code" />
+      </div>
+      <div className="field">
+        <label htmlFor="programme_id" className="label">Department / programme</label>
+        <select
+          id="programme_id"
+          name="programme_id"
+          className="input"
+          value={programme}
+          onChange={(e) => setProgramme(e.target.value)}
+          disabled={!school}
+          {...invalid(state, 'programme_id')}
+        >
+          <option value="" disabled>{school ? 'Choose your programme' : 'Choose your school first'}</option>
+          {options.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
+        </select>
+        <FieldError state={state} name="programme_id" />
+      </div>
     </div>
   );
 }

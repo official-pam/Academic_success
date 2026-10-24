@@ -3,7 +3,7 @@ import { requireMember } from '@/lib/auth';
 import { lagosToday, addDays, formatDay } from '@/lib/dates';
 import { VERSES, verseIndexFor, describeVerse } from '@/lib/memory-verses';
 import { VerseCard } from '@/components/VerseCard';
-import { VerseBackground, themeFor } from '@/components/VerseBackground';
+import { photoFor } from '@/lib/verse-photos';
 
 export const metadata = { title: 'Memory verses' };
 
@@ -46,18 +46,16 @@ export default async function VersesPage() {
         {past.length ? (
           <ul className="grid gap-3">
             {past.map(({ day, index, verse }) => (
-              <li key={day} className="relative overflow-hidden rounded-[var(--radius-control)]">
-                <VerseBackground theme={themeFor(index)} compact />
-                <div className="relative flex items-center gap-3 px-4 py-3 pr-20">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs text-muted">{formatDay(day, { weekday: 'short', day: 'numeric', month: 'short' })}</p>
-                    <p className="font-semibold">{verse.label}</p>
-                    <p className="mt-1 flex gap-3 text-xs font-semibold">
-                      <a href={verse.nkjv} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">NKJV</a>
-                      <a href={verse.niv} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">NIV</a>
-                    </p>
+              <li key={day} className="relative isolate overflow-hidden rounded-[var(--radius-control)] bg-ink text-white">
+                <img src={photoFor(index).small} alt="" aria-hidden="true" loading="lazy" decoding="async" referrerPolicy="no-referrer" className="absolute inset-0 -z-20 size-full object-cover" />
+                <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgb(20_22_21/0.62)]" />
+                <div className="grid gap-1.5 px-4 py-3">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <p className="text-xs text-white/80">{formatDay(day, { weekday: 'short', day: 'numeric', month: 'short' })}</p>
+                    {memorised.has(verse.ref) && <span className="chip bg-sage-wash text-sage-ink">✓ Memorised</span>}
                   </div>
-                  {memorised.has(verse.ref) && <span className="chip bg-surface/90 text-sage-ink">✓ Memorised</span>}
+                  <p className="text-sm leading-relaxed">“{verse.text}”</p>
+                  <p className="text-sm font-semibold">{verse.label} <span className="font-normal text-white/75">· WEB</span></p>
                 </div>
               </li>
             ))}
@@ -68,7 +66,8 @@ export default async function VersesPage() {
       </section>
 
       <p className="text-xs text-muted">
-        Verses open on Bible.com. NKJV © Thomas Nelson; NIV © Biblica, Inc. <Link href="/today" className="underline underline-offset-2">Back to Today</Link>
+        Scripture from the World English Bible (WEB), which is in the public domain. Photos from Unsplash.{' '}
+        <Link href="/today" className="underline underline-offset-2">Back to Today</Link>
       </p>
     </div>
   );

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getDirectory } from '@/lib/catalogue';
 import { RefreshingForm } from '@/components/RefreshingForm';
 import { notFound } from 'next/navigation';
 import { requireStaff } from '@/lib/auth';
@@ -14,6 +15,7 @@ export default async function EditAssignment({ params }) {
   const { id } = await params;
   if (!isUuid(id)) notFound();
   const { supabase, profile } = await requireStaff();
+  const { schools } = await getDirectory(supabase);
   const [{ data: a }, { data: audit }] = await Promise.all([
     supabase.from('assignments').select('*').eq('id', id).maybeSingle(),
     supabase.from('assignment_audit').select('id, actor, action, changed, at').eq('assignment_id', id).order('at', { ascending: false }).limit(20),
@@ -43,7 +45,7 @@ export default async function EditAssignment({ params }) {
           <RefreshingForm action={setAssignmentStatus}><input type="hidden" name="id" value={a.id} /><input type="hidden" name="status" value="draft" /><button className="btn btn-outline">Unpublish</button></RefreshingForm>
         )}
       </div>
-      <AssignmentForm assignment={initial} profile={profile} today={lagosToday()} />
+      <AssignmentForm schools={schools} assignment={initial} profile={profile} today={lagosToday()} />
       <section aria-labelledby="history">
         <h2 id="history" className="text-base font-bold">History</h2>
         <ul className="mt-3 grid gap-2 text-sm">

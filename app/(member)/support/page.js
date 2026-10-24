@@ -66,17 +66,17 @@ export default async function SupportPage() {
         <section aria-labelledby="help-heading" className="panel p-5">
           <h2 id="help-heading" className="text-base font-bold">Need help with your studies?</h2>
           <p className="mt-2 text-sm">
-            Talk to your level coordinator. They can connect you with a mentor in a related department, a study
+            Talk to your committee head (your mentor). They can connect you with someone in a related department, a study
             group or past questions. What you share stays private.
           </p>
           <dl className="mt-4 grid gap-3 text-sm">
             <div>
-              <dt className="text-muted">{levelLabel(profile.level)} coordinator</dt>
-              <dd className="font-semibold">{coordinators.length ? coordinators.map((c) => c.full_name).join(', ') : 'Not assigned yet'}</dd>
+              <dt className="text-muted">Your committee head{profile.school_code ? ` (${profile.school_code})` : ''}</dt>
+              <dd className="font-semibold">{coordinators.length ? coordinators.map((c) => c.full_name).join(', ') : (profile.school_code ? 'Not assigned yet' : 'Set your school in Profile')}</dd>
             </div>
             {chair && (
               <div>
-                <dt className="text-muted">Chairman, Academic Committee</dt>
+                <dt className="text-muted">Admin, Academic Committee</dt>
                 <dd className="font-semibold">{chair.full_name}</dd>
               </div>
             )}

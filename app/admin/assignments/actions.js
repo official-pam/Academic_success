@@ -1,7 +1,7 @@
 'use server';
 import { redirect } from 'next/navigation';
 import { requireStaff } from '@/lib/auth';
-import { lagosToISO, resolveLevel, dbErrorMessage, isUuid } from '@/lib/admin';
+import { lagosToISO, resolveLevel, resolveSchool, dbErrorMessage, isUuid } from '@/lib/admin';
 
 export async function saveAssignment(_prev, formData) {
   const { supabase, profile } = await requireStaff();
@@ -15,6 +15,7 @@ export async function saveAssignment(_prev, formData) {
     due_date: String(formData.get('due_date') || ''),
     due_time: String(formData.get('due_time') || ''),
     level: String(formData.get('level') ?? ''),
+    school_code: String(formData.get('school_code') ?? ''),
     department: String(formData.get('department') || '').trim(),
   };
   const errors = {};
@@ -26,6 +27,8 @@ export async function saveAssignment(_prev, formData) {
   else if (new Date(due_at) <= new Date()) errors.due_date = 'The deadline must be in the future.';
   const level = resolveLevel(profile, values.level);
   if (level === undefined) errors.level = 'Choose a level.';
+  const school_code = resolveSchool(profile, values.school_code);
+  if (school_code === undefined) errors.school_code = 'Choose a school.';
   if (values.department && (values.department.length < 2 || values.department.length > 80)) errors.department = 'Use a department name, or leave it empty for all.';
   if (Object.keys(errors).length) return { errors, values };
 
@@ -35,6 +38,7 @@ export async function saveAssignment(_prev, formData) {
     resources: values.resources,
     due_at,
     level,
+    school_code,
     department: values.department || null,
     ...(intent === 'publish' ? { status: 'published' } : {}),
   };

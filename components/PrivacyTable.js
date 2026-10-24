@@ -1,10 +1,12 @@
 // "Who can see what" — the spec's release gate asks that members can explain this themselves.
+// Mentors = committee heads for the member's school (and level, if set). Admin = the committee chair.
 const ROWS = [
-  ['Your name, level and department', 'You, your level coordinator, the chairman'],
-  ['Your reading check-ins and notes', 'Only you'],
-  ['Your goals and study plan', 'Only you'],
-  ['Whether your level is reading this week', 'Coordinators and the chairman, as totals only (e.g. "18 of 31 members")'],
-  ['CGPA or academic struggles', 'Not collected'],
+  ['Your name, school, programme and level', 'You, your committee head (mentor) and the admin'],
+  ['Your courses, targets, goals and results (grades, scores, CGPA)', 'You, your committee head and the admin'],
+  ['Your focus sessions and planned study sessions', 'You, your committee head and the admin. They are notified when you finish a focus session or record a result'],
+  ['Which days you checked in', 'You, your committee head and the admin (the days only)'],
+  ['Your check-in notes and memorised verses', 'Only you'],
+  ['Totals for your level', 'The committee, as totals only (hidden when fewer than 3 people)'],
 ];
 
 export function PrivacyTable() {

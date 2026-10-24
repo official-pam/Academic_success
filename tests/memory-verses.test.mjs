@@ -5,9 +5,10 @@ import assert from 'node:assert/strict';
 
 // Load lib/memory-verses.js without a bundler: inline parseDay and strip ESM syntax.
 const dates = 'function parseDay(day){const [y,m,d]=day.split("-").map(Number);return new Date(Date.UTC(y,m-1,d,12));}';
-const src = readFileSync(new URL('../lib/memory-verses.js', import.meta.url), 'utf8')
-  .replace(/^import .*$/m, '')
+const strip = (path) => readFileSync(new URL(path, import.meta.url), 'utf8')
+  .replace(/^import .*$/gm, '')
   .replace(/export (const|function)/g, '$1');
+const src = `${strip('../lib/verse-text.js')}\n${strip('../lib/memory-verses.js')}`;
 const ctx = vm.createContext({});
 vm.runInContext(`${dates}\n${src}\nthis.api = { VERSES, verseIndexFor, describeVerse, verseFor };`, ctx);
 const { VERSES, verseIndexFor, describeVerse, verseFor } = ctx.api;
@@ -25,12 +26,16 @@ test('rotation follows the Lagos calendar day', () => {
   assert.notEqual(verseFor('2026-10-24').ref, verseFor('2026-10-25').ref);
 });
 
-test('every verse resolves to a book name and Bible.com links', () => {
+test('every verse shows its reference and full WEB text, with no outbound links', () => {
   for (const ref of VERSES) {
     const v = describeVerse(ref);
     assert.ok(v.label && !v.label.startsWith('undefined'), ref);
-    assert.match(v.nkjv, /^https:\/\/www\.bible\.com\/bible\/114\/[0-9A-Z]{3}\.\d+\.\d+(-\d+)?\.NKJV$/);
-    assert.match(v.niv, /^https:\/\/www\.bible\.com\/bible\/111\/[0-9A-Z]{3}\.\d+\.\d+(-\d+)?\.NIV$/);
+    assert.ok(v.text.length > 10, `text for ${ref}`);
+    assert.equal(v.version, 'WEB');
+    assert.equal(v.nkjv, undefined);
+    const open = (v.text.match(/“/g) || []).length, close = (v.text.match(/”/g) || []).length;
+    assert.equal(open, close, `balanced quotes in ${ref}`);
   }
-  assert.equal(describeVerse('PHP 4:6-7').label, 'Philippians 4:6-7');
+  assert.equal(describeVerse('PHP 4:6-7').label, 'Philippians 4:6–7');
+  assert.equal(describeVerse('PHP 4:13').text, 'I can do all things through Christ, who strengthens me.');
 });

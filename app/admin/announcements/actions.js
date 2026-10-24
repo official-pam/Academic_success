@@ -1,7 +1,7 @@
 'use server';
 import { redirect } from 'next/navigation';
 import { requireStaff } from '@/lib/auth';
-import { resolveLevel, dbErrorMessage, isUuid } from '@/lib/admin';
+import { resolveLevel, resolveSchool, dbErrorMessage, isUuid } from '@/lib/admin';
 
 export async function saveAnnouncement(_prev, formData) {
   const { supabase, profile } = await requireStaff();
@@ -12,6 +12,7 @@ export async function saveAnnouncement(_prev, formData) {
     title: String(formData.get('title') || '').trim(),
     body: String(formData.get('body') || '').trim(),
     level: String(formData.get('level') ?? ''),
+    school_code: String(formData.get('school_code') ?? ''),
     pinned: formData.get('pinned') === 'on',
   };
   const errors = {};
@@ -20,8 +21,10 @@ export async function saveAnnouncement(_prev, formData) {
   else if (values.body.length > 4000) errors.body = 'Keep it under 4,000 characters.';
   const level = resolveLevel(profile, values.level);
   if (level === undefined) errors.level = 'Choose a level.';
+  const school_code = resolveSchool(profile, values.school_code);
+  if (school_code === undefined) errors.school_code = 'Choose a school.';
   if (Object.keys(errors).length) return { errors, values };
-  const row = { title: values.title, body: values.body, level, pinned: values.pinned, ...(intent === 'publish' ? { status: 'published' } : {}) };
+  const row = { title: values.title, body: values.body, level, school_code, pinned: values.pinned, ...(intent === 'publish' ? { status: 'published' } : {}) };
   if (id) {
     if (!isUuid(id)) return { message: 'Unknown announcement.' };
     const { data, error } = await supabase.from('announcements').update(row).eq('id', id).select('id').maybeSingle();

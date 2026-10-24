@@ -5,6 +5,7 @@ import { lagosToday, addDays, weekDays, formatDay, formatTime, formatDateTime, p
 import { GoalForm, AddSessionForm } from './forms';
 import { moveSession, deleteSession } from './actions';
 import { DoneToggle } from './DoneToggle';
+import { AddToCalendar } from '@/components/AddToCalendar';
 
 export const metadata = { title: 'Plan' };
 
@@ -185,6 +186,13 @@ function SessionRow({ s, today }) {
               <button className="btn btn-primary">Move</button>
             </RefreshingForm>
           </details>
+          {!s.done_at && s.starts_on >= today && (
+            <AddToCalendar
+              compact
+              uid={s.id}
+              event={{ title: s.kind === 'exam' ? `Exam: ${s.title}` : `Study: ${s.title}`, day: s.starts_on, time: s.start_time, minutes: s.duration_min || (s.kind === 'exam' ? 120 : 60), details: 'Planned in TLV Academic' }}
+            />
+          )}
           <RefreshingForm action={deleteSession}>
             <input type="hidden" name="id" value={s.id} />
             <button className="min-h-11 text-sm font-medium text-muted underline underline-offset-4" aria-label={`Remove ${s.title}`}>Remove</button>

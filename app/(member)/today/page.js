@@ -5,6 +5,7 @@ import { CheckIn } from '@/components/CheckIn';
 import { levelLabel } from '@/lib/constants';
 import { verseFor, verseIndexFor } from '@/lib/memory-verses';
 import { VerseCard } from '@/components/VerseCard';
+import { InstallApp } from '@/components/InstallApp';
 
 export const metadata = { title: 'Today' };
 
@@ -49,6 +50,8 @@ export default async function TodayPage({ searchParams }) {
           )}
         </div>
 
+        <InstallApp />
+
         <VerseCard verse={verse} index={verseIndexFor(today)} memorised={Boolean(memorisedRes.data)} />
 
         {/* Daily reading goal */}
@@ -68,6 +71,19 @@ export default async function TodayPage({ searchParams }) {
           </div>
           <Link href="/plan#goal" className="btn btn-ghost min-h-9 px-3 text-xs">{goal ? 'Change' : 'Set goal'}</Link>
         </section>
+
+        <Link href="/focus" className="card-lavender flex items-center gap-4 p-4 hover:brightness-[0.98]">
+          <span className="icon-tile bg-surface text-lavender-ink">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+              <circle cx="12" cy="13" r="7.5" /><path d="M12 9.5V13l2.5 1.5M9.5 3h5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-bold">Focus timer</span>
+            <span className="block text-sm text-muted">Time a study session for one course. It rings when you're done.</span>
+          </span>
+          <span aria-hidden="true" className="text-lavender-ink">→</span>
+        </Link>
 
         {loadFailed ? (
           <div role="alert" className="panel grid gap-2 p-5">

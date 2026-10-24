@@ -77,7 +77,7 @@ select t.ok(t.refused($$insert into public.assignments (title, due_at, level, st
 select t.ok(t.refused($$insert into public.assignments (title, due_at, level) values ('Past', now() - interval '1 day', 200)$$), 'deadline in the past is refused');
 select t.ok(t.refused($$update public.profiles set role = 'coordinator', coordinator_level = 300 where id = '00000000-0000-0000-0000-000000000004'$$) or true, 'coordinator role change attempt runs');
 select t.ok((select count(*) = 1 from public.participation_by_level(public.lagos_today() - 6, public.lagos_today())), 'coordinator sees participation for one level');
-select t.ok((select active_members = 1 and checkins = 1 from public.participation_by_level(public.lagos_today() - 6, public.lagos_today())), 'participation counts A''s check-in');
+select t.ok((select members = 2 and active_members is null and checkins is null from public.participation_by_level(public.lagos_today() - 6, public.lagos_today())), 'participation hides activity for a level with fewer than 3 members');
 update public.assignments set status = 'archived' where title = 'Chem tutorial reading';
 update public.assignments set status = 'published' where title = 'Chem tutorial reading';
 select t.ok((select count(*) >= 3 from public.assignment_audit), 'assignment changes are audited');

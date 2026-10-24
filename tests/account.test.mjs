@@ -13,5 +13,5 @@ test('the chairman cannot delete their account before handing over',async()=>{
   let deleted=false;
   const c=vm.createContext({LEVELS:[100],redirect(){throw Error('Unexpected redirect');},getServerSupabase:async()=>({auth:{getUser:async()=>({data:{user:{id:'chair'}}})},from:()=>({select:()=>({eq:()=>({single:async()=>({data:{role:'chairman'},error:null})})})})}),getAdminSupabase:()=>{deleted=true;return{};}});
   vm.runInContext(source,c);const f=new FormData();f.set('confirm','DELETE');
-  assert.match((await c.deleteAccount(null,f)).message,/Hand the chairman role/);assert.equal(deleted,false);
+  assert.match((await c.deleteAccount(null,f)).message,/Make someone else admin/);assert.equal(deleted,false);
 });

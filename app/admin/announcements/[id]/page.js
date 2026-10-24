@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getDirectory } from '@/lib/catalogue';
 import { RefreshingForm } from '@/components/RefreshingForm';
 import { notFound } from 'next/navigation';
 import { requireStaff } from '@/lib/auth';
@@ -11,6 +12,7 @@ export default async function EditAnnouncement({ params }) {
   const { id } = await params;
   if (!isUuid(id)) notFound();
   const { supabase, profile } = await requireStaff();
+  const { schools } = await getDirectory(supabase);
   const { data: item } = await supabase.from('announcements').select('*').eq('id', id).maybeSingle();
   if (!item) notFound();
   return (
@@ -23,7 +25,7 @@ export default async function EditAnnouncement({ params }) {
           ? <button name="status" value="archived" className="btn btn-outline">Archive</button>
           : <button name="status" value="draft" className="btn btn-outline">Restore as draft</button>}
       </RefreshingForm>
-      <AnnouncementForm item={item} profile={profile} />
+      <AnnouncementForm schools={schools} item={item} profile={profile} />
     </div>
   );
 }

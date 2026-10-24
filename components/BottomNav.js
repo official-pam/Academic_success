@@ -14,7 +14,7 @@ const ITEMS = [
   {
     href: '/courses',
     label: 'Courses',
-    match: ['/courses'],
+    match: ['/courses', '/focus'],
     icon: 'M12 4 3 8.5l9 4.5 9-4.5zM3 12.5l9 4.5 9-4.5M3 16.5 12 21l9-4.5',
   },
   {

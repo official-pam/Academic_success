@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { requireMember, isStaff } from '@/lib/auth';
-import { ROLE_LABEL, levelLabel } from '@/lib/constants';
+import { roleLine } from '@/lib/constants';
 import { SignOutButton } from '../profile/forms';
+import { InstallApp } from '@/components/InstallApp';
 
 export const metadata = { title: 'More' };
 
@@ -40,21 +41,21 @@ export default async function MorePage() {
         <p className="eyebrow">Account</p>
         <h1 className="display mt-2 text-[2.25rem] leading-[1.08]">More</h1>
         <p className="mt-2 text-sm text-muted">
-          {user.email} · {ROLE_LABEL[profile.role]}
-          {profile.role === 'coordinator' ? ` for ${levelLabel(profile.coordinator_level)}` : ''}
+          {user.email} · {roleLine(profile)}
         </p>
       </div>
 
       <ul className="panel divide-y divide-rule overflow-hidden">
         <Row href="/verses" icon="verses" tone="bg-rose-wash text-rose-ink" title="Memory verses" detail="Today's verse, past verses and the ones you've memorised" />
         <Row href="/updates" icon="updates" tone="bg-lavender-wash text-lavender-ink" title="Updates" detail="Announcements and assignments from the committee" />
-        <Row href="/profile" icon="profile" tone="bg-sage-wash text-sage-ink" title="Profile" detail="Name, level, department and account" />
+        <Row href="/profile" icon="profile" tone="bg-sage-wash text-sage-ink" title="Profile" detail="Name, school, programme, level and account" />
         <Row href="/privacy" icon="privacy" tone="bg-slate-wash text-slate-ink" title="Who can see what" detail="What the committee can and can't see" />
         {isStaff(profile) && (
-          <Row href="/admin" icon="committee" tone="bg-stone text-ink" title="Committee workspace" detail="Publish updates, assignments and see participation" />
+          <Row href="/admin" icon="committee" tone="bg-stone text-ink" title="Committee workspace" detail="Students, activity, publishing and participation" />
         )}
       </ul>
 
+      <InstallApp compact />
       <SignOutButton />
     </div>
   );

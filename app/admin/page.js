@@ -123,7 +123,7 @@ export default async function ParticipationPage({ searchParams }) {
                           const m = Number(c?.members || 0), a = Number(c?.active_members || 0);
                           const p = pct(a, m);
                           return (
-                            <td key={w} className="h-10 rounded text-center" style={{ background: p === null ? 'transparent' : `rgba(198,91,55,${0.08 + (p / 100) * 0.8})`, color: p !== null && p > 55 ? '#fff' : '#20221f' }}>
+                            <td key={w} className="h-10 rounded text-center" style={{ background: p === null ? 'transparent' : `color-mix(in srgb, var(--color-lavender-strong) ${Math.round(10 + p * 0.8)}%, var(--color-surface))`, color: p !== null && p > 55 ? 'var(--color-surface)' : 'var(--color-ink)' }}>
                               {p === null ? <span className="text-muted">—</span> : `${p}%`}
                             </td>
                           );
@@ -138,7 +138,7 @@ export default async function ParticipationPage({ searchParams }) {
 
           <p className="max-w-3xl text-sm text-muted">
             Totals include only levels with at least three members. Counts only. Individual check-ins and private notes are never shown to the committee, and reading shares are hidden (—) for any group under {MIN_GROUP} members so no one can be singled out. Low participation is a
-            prompt for supportive follow-up through the level coordinator, not a judgement about anyone's effort.
+            prompt for supportive follow-up through the committee head, not a judgement about anyone's effort.
           </p>
         </>
       )}

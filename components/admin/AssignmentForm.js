@@ -4,9 +4,9 @@ import { saveAssignment } from '@/app/admin/assignments/actions';
 import { audienceCount } from '@/app/admin/actions';
 import { SubmitButton, FormMessage, FieldError, invalid } from '@/components/forms';
 import { RichText, ResourceList } from '@/components/RichText';
-import { LEVELS, levelLabel } from '@/lib/constants';
+import { AudienceFields, audienceText } from '@/components/admin/AudienceFields';
 
-export function AssignmentForm({ assignment, profile, today }) {
+export function AssignmentForm({ assignment, profile, today, schools = [] }) {
   const [state, action] = useActionState(saveAssignment, null);
   const clientKey = useMemo(() => (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : ''), []);
   const coordinator = profile.role === 'coordinator';
@@ -16,7 +16,8 @@ export function AssignmentForm({ assignment, profile, today }) {
     resources: assignment?.resources || '',
     due_date: assignment?.due_date || '',
     due_time: assignment?.due_time || '18:00',
-    level: coordinator ? String(profile.coordinator_level) : assignment ? String(assignment.level ?? 'all') : 'all',
+    level: coordinator && profile.coordinator_level ? String(profile.coordinator_level) : assignment ? String(assignment.level ?? 'all') : 'all',
+    school_code: coordinator && profile.committee_school ? profile.committee_school : assignment ? String(assignment.school_code ?? 'all') : 'all',
     department: assignment?.department || '',
   };
   const [v, setV] = useState(init);
@@ -26,11 +27,11 @@ export function AssignmentForm({ assignment, profile, today }) {
 
   useEffect(() => {
     let live = true;
-    const t = setTimeout(() => audienceCount(v.level === 'all' ? null : v.level, v.department).then((n) => live && setReach(n)), 300);
+    const t = setTimeout(() => audienceCount(v.level === 'all' ? null : v.level, v.department, v.school_code).then((n) => live && setReach(n)), 300);
     return () => { live = false; clearTimeout(t); };
-  }, [v.level, v.department]);
+  }, [v.level, v.department, v.school_code]);
 
-  const audience = `${v.level === 'all' || !v.level ? 'All levels' : levelLabel(Number(v.level))}${v.department ? ` · ${v.department}` : ' · all departments'}`;
+  const audience = audienceText(v);
   const published = assignment?.status === 'published';
 
   return (
@@ -64,23 +65,8 @@ export function AssignmentForm({ assignment, profile, today }) {
             <input id="due_time" name="due_time" type="time" value={v.due_time} onChange={set('due_time')} className="input" />
           </div>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="field">
-            <label htmlFor="level" className="label">Level</label>
-            {coordinator ? (
-              <>
-                <input type="hidden" name="level" value={profile.coordinator_level} />
-                <p id="level" className="input flex items-center bg-paper">{levelLabel(profile.coordinator_level)}</p>
-                <p className="hint">Coordinators publish to their own level.</p>
-              </>
-            ) : (
-              <select id="level" name="level" value={v.level} onChange={set('level')} className="input" {...invalid(state, 'level')}>
-                <option value="all">All levels</option>
-                {LEVELS.map((l) => <option key={l} value={l}>{l}L</option>)}
-              </select>
-            )}
-            <FieldError state={state} name="level" />
-          </div>
+        <AudienceFields profile={profile} schools={schools} state={state} value={v} onChange={(k, val) => setV((x) => ({ ...x, [k]: val }))} />
+        <div className="grid gap-3">
           <div className="field">
             <label htmlFor="department" className="label">Department <span className="font-normal text-muted">(optional)</span></label>
             <input id="department" name="department" value={v.department} onChange={set('department')} placeholder="All departments" className="input" {...invalid(state, 'department')} />
