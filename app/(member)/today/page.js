@@ -3,6 +3,8 @@ import { requireMember, firstName } from '@/lib/auth';
 import { lagosToday, weekDays, addDays, formatDay, formatTime, relativeDue, greeting, formatDateTime } from '@/lib/dates';
 import { CheckIn } from '@/components/CheckIn';
 import { levelLabel } from '@/lib/constants';
+import { verseFor, verseIndexFor } from '@/lib/memory-verses';
+import { VerseCard } from '@/components/VerseCard';
 
 export const metadata = { title: 'Today' };
 
@@ -12,13 +14,15 @@ export default async function TodayPage({ searchParams }) {
   const today = lagosToday();
   const days = weekDays(today);
 
-  const [goalRes, recentRes, todayRes, sessionsRes, assignmentRes, announcementRes] = await Promise.all([
+  const verse = verseFor(today);
+  const [goalRes, recentRes, todayRes, sessionsRes, assignmentRes, announcementRes, memorisedRes] = await Promise.all([
     supabase.from('goals').select('title, days_per_week, minutes_per_day').eq('active', true).maybeSingle(),
     supabase.from('checkins').select('day').gte('day', addDays(today, -60)).order('day', { ascending: false }).limit(61),
     supabase.from('checkins').select('id, minutes, note, created_at').eq('day', today).maybeSingle(),
     supabase.from('study_sessions').select('id, kind, title, start_time, duration_min, done_at').eq('starts_on', today).order('start_time', { ascending: true, nullsFirst: false }),
     supabase.from('assignments').select('id, title, due_at, level').eq('status', 'published').gte('due_at', new Date().toISOString()).order('due_at').limit(1).maybeSingle(),
     supabase.from('announcements').select('id, title, published_at').eq('status', 'published').order('pinned', { ascending: false }).order('published_at', { ascending: false }).limit(1).maybeSingle(),
+    supabase.from('memorised_verses').select('verse_ref').eq('verse_ref', verse.ref).maybeSingle(),
   ]);
 
   const loadFailed = [goalRes, recentRes, todayRes].some((r) => r.error);
@@ -44,6 +48,8 @@ export default async function TodayPage({ searchParams }) {
             </p>
           )}
         </div>
+
+        <VerseCard verse={verse} index={verseIndexFor(today)} memorised={Boolean(memorisedRes.data)} />
 
         {/* Daily reading goal */}
         <section className="panel flex items-center gap-4 p-4" aria-labelledby="goal-heading">

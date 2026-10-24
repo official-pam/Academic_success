@@ -32,7 +32,7 @@ const ITEMS = [
   {
     href: '/more',
     label: 'More',
-    match: ['/more', '/updates', '/assignments', '/profile'],
+    match: ['/more', '/updates', '/assignments', '/profile', '/verses'],
     dots: true,
   },
 ];
